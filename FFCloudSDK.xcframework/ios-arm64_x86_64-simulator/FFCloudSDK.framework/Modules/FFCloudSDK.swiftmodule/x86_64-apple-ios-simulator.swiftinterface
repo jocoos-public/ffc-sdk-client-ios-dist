@@ -1,0 +1,181 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FFCloudSDK
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+@_exported import FFCloudSDK
+import Foundation
+import LiveKitClient
+import Logboard
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_hasMissingDesignatedInitializers public class FFCRemoteTrackPublication {
+  public var track: FFCloudSDK.FFCTrack?
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class FFCApi {
+  public typealias APIResult<T> = ((FFCloudSDK.FFCApi.Result<T>) -> Swift.Void)? where T : Swift.Decodable
+  @_hasMissingDesignatedInitializers final public class Model<T> where T : Swift.Decodable {
+    final public let value: T
+    @objc deinit
+  }
+  public enum Result<T> where T : Swift.Decodable {
+    case Error(any Swift.Error)
+    case Fail(FFCloudSDK.FFCApi.Model<FFCloudSDK.FFCFail>)
+    case Success(FFCloudSDK.FFCApi.Model<T>)
+  }
+  @objc deinit
+}
+extension FFCloudSDK.FFCApi {
+  public func createVideoRoom(title: Swift.String, description: Swift.String, password: Swift.String? = nil, customType: Swift.String? = nil, customData: [Swift.String : Swift.String]? = nil, completion: FFCloudSDK.FFCApi.APIResult<FFCloudSDK.VideoRoomInfo>)
+  public func listVideoRooms(videoRoomState: Swift.String? = nil, type: Swift.String? = nil, sortBy: Swift.String? = nil, page: Swift.UInt64? = nil, pageSize: Swift.UInt64? = nil, completion: FFCloudSDK.FFCApi.APIResult<FFCloudSDK.VideoRoomInfoList>)
+  public func getVideoRoom(videoRoomId: Swift.UInt64, completion: FFCloudSDK.FFCApi.APIResult<FFCloudSDK.VideoRoomInfo>)
+  public func issueWebRtcVideoRoomToken(videoRoomId: Swift.UInt64, password: Swift.String? = nil, customData: [Swift.String : Swift.String]? = nil, completion: FFCloudSDK.FFCApi.APIResult<FFCloudSDK.WebRtcVideoTokenInfo>)
+}
+@_hasMissingDesignatedInitializers public class FFCRemoteParticipant {
+  @objc deinit
+}
+public protocol FFCVideoRoomDelegate : AnyObject {
+  func videoRoomDidConnect(_ videoRoom: FFCloudSDK.FFCVideoRoom)
+  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, didFailToConnectWithError error: LiveKitClient.LiveKitError?)
+  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, didDisconnectWithError error: LiveKitClient.LiveKitError?)
+  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.LocalParticipant, didPublishTrack publication: LiveKitClient.LocalTrackPublication)
+  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.RemoteParticipant, didSubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
+  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.RemoteParticipant, didUnsubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
+}
+@_hasMissingDesignatedInitializers public class FFCVideoRoom {
+  weak public var delegate: (any FFCloudSDK.FFCVideoRoomDelegate)?
+  public var localParticipant: LiveKitClient.LocalParticipant {
+    get
+  }
+  public var remoteParticipants: [LiveKitClient.Participant.Identity : LiveKitClient.RemoteParticipant] {
+    get
+  }
+  public var sid: LiveKitClient.Room.Sid? {
+    get
+  }
+  public func getParticipantByIdentity(identity: LiveKitClient.Participant.Identity) -> LiveKitClient.Participant?
+  public func disconnect()
+  public func publishLocalVideo(enableMicrophone: Swift.Bool = true, enableCamera: Swift.Bool = true)
+  public func attachLocalVideo(track: any LiveKitClient.VideoTrack, localVideoView: UIKit.UIView)
+  public func attachRemoteVideo(track: any LiveKitClient.VideoTrack, remoteVideoView: UIKit.UIView)
+  public func enableLocalCamera(enabled: Swift.Bool)
+  public func enableLocalMicrophone(enabled: Swift.Bool)
+  @objc deinit
+}
+extension FFCloudSDK.FFCVideoRoom : LiveKitClient.RoomDelegate {
+  @objc dynamic public func roomDidConnect(_ room: LiveKitClient.Room)
+  @objc dynamic public func room(_ room: LiveKitClient.Room, didFailToConnectWithError error: LiveKitClient.LiveKitError?)
+  @objc dynamic public func room(_ room: LiveKitClient.Room, didDisconnectWithError error: LiveKitClient.LiveKitError?)
+  @objc dynamic public func room(_: LiveKitClient.Room, participant: LiveKitClient.LocalParticipant, didPublishTrack publication: LiveKitClient.LocalTrackPublication)
+  @objc dynamic public func room(_: LiveKitClient.Room, participant: LiveKitClient.RemoteParticipant, didSubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
+  @objc dynamic public func room(_ room: LiveKitClient.Room, participant: LiveKitClient.RemoteParticipant, didUnsubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
+}
+@_hasMissingDesignatedInitializers public class FFCLocalTrackPublication {
+  public var track: FFCloudSDK.FFCTrack?
+  @objc deinit
+}
+public enum FFCErrorType : Swift.Int, Swift.Sendable {
+  case unknown
+  case cancelled
+  case timedOut
+  case failedToParseUrl
+  case failedToConvertData
+  case invalidState
+  case webRTC
+  case network
+  case duplicateIdentity
+  case serverShutdown
+  case participantRemoved
+  case roomDeleted
+  case stateMismatch
+  case joinFailure
+  case serverPingTimedOut
+  case deviceNotFound
+  case captureFormatNotFound
+  case unableToResolveFPSRange
+  case capturerDimensionsNotResolved
+  case deviceAccessDenied
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension FFCloudSDK.FFCErrorType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class FFCError {
+  final public let type: FFCloudSDK.FFCErrorType
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class FFCLocalParticipant {
+  @objc deinit
+}
+public typealias HttpCompletion = ((Swift.Int, Foundation.Data?, (any Swift.Error)?) -> Swift.Void)?
+@_hasMissingDesignatedInitializers public class FFCTrack {
+  public var track: LiveKitClient.Track?
+  public func isVideoTrack() -> Swift.Bool
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class FFCloudSDK : ObjectiveC.NSObject {
+  public static func api(url: Swift.String, accessToken: Swift.String) -> FFCloudSDK.FFCApi
+  public static func connectWebRtcVideoRoom(webRtcServerUrl: Swift.String, webRtcToken: Swift.String, delegate: (any FFCloudSDK.FFCVideoRoomDelegate)? = nil) -> FFCloudSDK.FFCVideoRoom
+  @objc override dynamic public init()
+  @objc deinit
+}
+public struct FFCFail : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct VideoRoomInfo : Swift.Decodable {
+  public let id: Swift.UInt64
+  public let uuid: Swift.String
+  public let type: Swift.String?
+  public let videoRoomState: Swift.String?
+  public let accessLevel: Swift.String?
+  public let app: FFCloudSDK.AppInfo
+  public let member: FFCloudSDK.MemberInfo
+  public let title: Swift.String?
+  public let description: Swift.String?
+  public let customType: Swift.String?
+  public let customData: [Swift.String : Swift.String]?
+  public let createdAt: Swift.String
+  public let lastModifiedAt: Swift.String
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct VideoRoomInfoList : Swift.Decodable {
+  public let content: [FFCloudSDK.VideoRoomInfo]
+  public let first: Swift.Bool
+  public let last: Swift.Bool
+  public let empty: Swift.Bool
+  public let totalPages: Swift.UInt64
+  public let totalElements: Swift.UInt64
+  public let numberOfElements: Swift.UInt64
+  public let size: Swift.UInt64
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct WebRtcVideoTokenInfo : Swift.Decodable {
+  public let webRtcServerUrl: Swift.String
+  public let webRtcToken: Swift.String
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct AppInfo : Swift.Decodable {
+  public let id: Swift.UInt64
+  public let name: Swift.String
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct MemberInfo : Swift.Decodable {
+  public let id: Swift.UInt64
+  public let appUserId: Swift.String
+  public let appUserName: Swift.String?
+  public let appUserProfileImgUrl: Swift.String?
+  public let customType: Swift.String
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension FFCloudSDK.FFCErrorType : Swift.Equatable {}
+extension FFCloudSDK.FFCErrorType : Swift.Hashable {}
+extension FFCloudSDK.FFCErrorType : Swift.RawRepresentable {}
