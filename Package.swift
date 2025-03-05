@@ -21,7 +21,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "FFCloudSDK",
-            path: "FFCloudSDK.xcframework"
+            url: "https://github.com/jocoos-public/ffc-sdk-client-ios-dist/FFCloudSDK.xcframework"
         ),
     ]
 )
