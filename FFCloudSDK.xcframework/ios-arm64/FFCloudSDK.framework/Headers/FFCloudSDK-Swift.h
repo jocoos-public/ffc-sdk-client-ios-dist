@@ -299,8 +299,8 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 #if defined(__OBJC__)
 
-SWIFT_CLASS("_TtC10FFCloudSDK10FFCloudSDK")
-@interface FFCloudSDK : NSObject
+SWIFT_CLASS("_TtC10FFCloudSDK7FFCloud")
+@interface FFCloud : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

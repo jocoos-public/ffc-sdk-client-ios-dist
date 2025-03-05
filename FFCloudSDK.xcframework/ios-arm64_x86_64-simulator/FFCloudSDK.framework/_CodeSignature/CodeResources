@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/FFCloudSDK-Swift.h</key>
 		<data>
-		l0XIAXaU64jAy8h7wTM9o22BbcU=
+		WkTK+O7rP2xBAcWcBcv1WFT21jE=
 		</data>
 		<key>Headers/FFCloudSDK.h</key>
 		<data>
@@ -18,11 +18,11 @@
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		GpxxETwI7LBzhgzhN5pXCLTWQY4=
+		mb1JLWNabxd/aDL54eHB0kd1/6Y=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		JpDTR748dxpB5oqpZQfjZzutr0Q=
+		sIIFVszPGZM/YVXo/ZapcXWtv0A=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -30,19 +30,19 @@
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		JpDTR748dxpB5oqpZQfjZzutr0Q=
+		sIIFVszPGZM/YVXo/ZapcXWtv0A=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		8GpvnipCXsbuI8lBuwzlsAisIQE=
+		n8zj5wtoyFmMW0C5K1pS5ED2orI=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		GpxxETwI7LBzhgzhN5pXCLTWQY4=
+		mb1JLWNabxd/aDL54eHB0kd1/6Y=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		74dzop8j28VPXJZlQETI/2I2ALc=
+		PIvt2MbsjvJ/Ga3hV85Lnp5xtlI=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -50,11 +50,11 @@
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		74dzop8j28VPXJZlQETI/2I2ALc=
+		PIvt2MbsjvJ/Ga3hV85Lnp5xtlI=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		fFNZWZHo/CXFJOvPyBTpCdN7HZI=
+		+tNmp3Iz3SlNoUm+TZun/8poPGY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -67,7 +67,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VcDdgoqsmkhw+CUR9Io0UDy1AseaNZRcddsDCiBMZ/w=
+			pbBlPU+/4rtJaJZHU8AHbWh2opmS2xjLF2d1HkJwTQg=
 			</data>
 		</dict>
 		<key>Headers/FFCloudSDK.h</key>
@@ -81,14 +81,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			KjZjHR5mwuTlydEo//bnR+4VH9avli8LmB92O/XqACE=
+			7s8so2c6SM3Rd4YJa08ACfTf0u7++4opkJiCpTdxRHQ=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			F1KZK/6426KecLjv2cvZhy/KFFNcD+onZuxiaubRNbU=
+			U8lGm4hz9BekSZy/gY4PFZCBjGcCCgKSckez7oARtkg=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -102,28 +102,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			F1KZK/6426KecLjv2cvZhy/KFFNcD+onZuxiaubRNbU=
+			U8lGm4hz9BekSZy/gY4PFZCBjGcCCgKSckez7oARtkg=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			E91x4dT9ELMG11VMm0mO1DckM2yIosNZW5S81Zb0tJY=
+			eYthWAvXsQUUkieSb0dzl5Nq8nuMYZib2BGCyBRfp2o=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KjZjHR5mwuTlydEo//bnR+4VH9avli8LmB92O/XqACE=
+			7s8so2c6SM3Rd4YJa08ACfTf0u7++4opkJiCpTdxRHQ=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kPUdkTHzo7M2tLzQDbruiH/z/cMrnDxZpgmwD5E7iNo=
+			ZmIgoLfBWbZ2sN3VI4Xc2tcXyXzvOP43SUBl6HS2bD4=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -137,14 +137,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kPUdkTHzo7M2tLzQDbruiH/z/cMrnDxZpgmwD5E7iNo=
+			ZmIgoLfBWbZ2sN3VI4Xc2tcXyXzvOP43SUBl6HS2bD4=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1sCgCNQvBQge8M3iYlS5+JtmmrxY73W9qQWj/kY35nw=
+			XPPiEJwljxeR6bpOuiVhyLqNVdE9ZLr/dtssq7V5yaA=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

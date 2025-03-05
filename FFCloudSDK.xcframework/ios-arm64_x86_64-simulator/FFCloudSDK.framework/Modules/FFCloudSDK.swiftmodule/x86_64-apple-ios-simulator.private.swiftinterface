@@ -15,6 +15,22 @@ import _SwiftConcurrencyShims
   public var track: FFCloudSDK.FFCTrack?
   @objc deinit
 }
+public class FFCVideoRoomOptions {
+  final public let cameraCaptureOptions: FFCloudSDK.FFCCameraCaptureOptions
+  public init(cameraCaptureOptions: FFCloudSDK.FFCCameraCaptureOptions = FFCCameraCaptureOptions())
+  @objc deinit
+}
+public class FFCCameraCaptureOptions {
+  final public let dimensions: FFCloudSDK.FFCDimensions
+  public init(dimensions: FFCloudSDK.FFCDimensions = FFCDimensions(width: 1280, height: 720))
+  @objc deinit
+}
+public class FFCDimensions {
+  final public let width: Swift.Int32
+  final public let height: Swift.Int32
+  public init(width: Swift.Int32, height: Swift.Int32)
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers public class FFCApi {
   public typealias APIResult<T> = ((FFCloudSDK.FFCApi.Result<T>) -> Swift.Void)? where T : Swift.Decodable
   @_hasMissingDesignatedInitializers final public class Model<T> where T : Swift.Decodable {
@@ -73,6 +89,12 @@ extension FFCloudSDK.FFCVideoRoom : LiveKitClient.RoomDelegate {
   @objc dynamic public func room(_: LiveKitClient.Room, participant: LiveKitClient.RemoteParticipant, didSubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
   @objc dynamic public func room(_ room: LiveKitClient.Room, participant: LiveKitClient.RemoteParticipant, didUnsubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
 }
+@objc @_inheritsConvenienceInitializers public class FFCloud : ObjectiveC.NSObject {
+  public static func api(url: Swift.String, accessToken: Swift.String) -> FFCloudSDK.FFCApi
+  public static func connectWebRtcVideoRoom(webRtcServerUrl: Swift.String, webRtcToken: Swift.String, videoRoomOptions: FFCloudSDK.FFCVideoRoomOptions = FFCVideoRoomOptions(), delegate: (any FFCloudSDK.FFCVideoRoomDelegate)? = nil) -> FFCloudSDK.FFCVideoRoom
+  @objc override dynamic public init()
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers public class FFCLocalTrackPublication {
   public var track: FFCloudSDK.FFCTrack?
   @objc deinit
@@ -120,12 +142,6 @@ public typealias HttpCompletion = ((Swift.Int, Foundation.Data?, (any Swift.Erro
 @_hasMissingDesignatedInitializers public class FFCTrack {
   public var track: LiveKitClient.Track?
   public func isVideoTrack() -> Swift.Bool
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers public class FFCloudSDK : ObjectiveC.NSObject {
-  public static func api(url: Swift.String, accessToken: Swift.String) -> FFCloudSDK.FFCApi
-  public static func connectWebRtcVideoRoom(webRtcServerUrl: Swift.String, webRtcToken: Swift.String, delegate: (any FFCloudSDK.FFCVideoRoomDelegate)? = nil) -> FFCloudSDK.FFCVideoRoom
-  @objc override dynamic public init()
   @objc deinit
 }
 public struct FFCFail : Swift.Decodable {
