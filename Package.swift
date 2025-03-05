@@ -21,13 +21,11 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "FFCloudSDK-xcframework",
-            url: "https://github.com/jocoos-public/ffc-sdk-client-ios-dist/releases/download/1.0.8/FFCloudSDK.xcframework.zip",
-            checksum: "2f6d0c0568411c6a260f5d56e08d6f3274ab2cbfd67dff98b45e90c9696fc281"
+            path: "./FFCloudSDK.xcframework"
         ),
         .target(
             name: "FFCloudSDK",
             dependencies: [
-                "FFCloudSDK-xcframework",
                 .product(name: "LiveKit", package: "client-sdk-swift"),
                 .product(name: "Logboard", package: "Logboard"),
             ]
