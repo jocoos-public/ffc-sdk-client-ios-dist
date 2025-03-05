@@ -11,7 +11,7 @@ let package = Package(
     products: [
         .library(
             name: "FFCloudSDK",
-            targets: ["FFCloudSDK", "FFCloudSDK-xcframework"]
+            targets: ["FFCloudSDK"]
         ),
     ],
     dependencies: [
@@ -28,6 +28,7 @@ let package = Package(
             dependencies: [
                 .product(name: "LiveKit", package: "client-sdk-swift"),
                 .product(name: "Logboard", package: "Logboard"),
+                "FFCloudSDK-xcframework",
             ]
         )
     ]
