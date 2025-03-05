@@ -22,7 +22,7 @@ let package = Package(
         .binaryTarget(
             name: "FFCloudSDK",
             path: "./FFCloudSDK.xcframework"
-        )
+        ),
     ]
 )
 
