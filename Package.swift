@@ -21,6 +21,10 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "FFCloudSDK",
+            dependencies: [
+                .product(name: "LiveKit", package: "client-sdk-swift"),
+                .product(name: "Logboard", package: "Logboard"),
+            ],
             path: "./FFCloudSDK.xcframework"
         ),
     ]
