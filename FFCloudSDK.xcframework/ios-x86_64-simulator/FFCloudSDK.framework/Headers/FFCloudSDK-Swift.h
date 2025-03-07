@@ -395,6 +395,12 @@ SWIFT_CLASS("_TtC10FFCloudSDK11FFCStreamer")
 
 
 
+SWIFT_CLASS("_TtC10FFCloudSDK7FFCloud")
+@interface FFCloud : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
 SWIFT_CLASS("_TtC10FFCloudSDK7FFError")
 @interface FFError : NSObject
 @property (nonatomic, readonly) NSInteger code;

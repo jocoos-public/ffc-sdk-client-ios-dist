@@ -18,6 +18,7 @@ import GLKit
 import ImageIO
 import KSPlayer_mysangle
 import LDSwiftEventSource
+import LiveKitClient
 import Logboard
 import MetalKit
 import Network
@@ -29,6 +30,75 @@ import VideoToolbox
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
+public class FFCVideoRoomOptions {
+  final public let dimensions: FFCloudSDK.FFCDimensions
+  final public let videoEncoding: FFCloudSDK.FFCVideoEncoding
+  public init(dimensions: FFCloudSDK.FFCDimensions = FFCDimensions(), videoEncoding: FFCloudSDK.FFCVideoEncoding = FFCVideoEncoding())
+  @objc deinit
+}
+public class FFCCameraCaptureOptions {
+  final public let dimensions: FFCloudSDK.FFCDimensions
+  public init(dimensions: FFCloudSDK.FFCDimensions = FFCDimensions())
+  @objc deinit
+}
+public class FFCDimensions {
+  final public let width: Swift.Int32
+  final public let height: Swift.Int32
+  public init(width: Swift.Int32 = 1280, height: Swift.Int32 = 720)
+  @objc deinit
+}
+public class FFCVideoPublishOptions {
+  final public let videoEncoding: FFCloudSDK.FFCVideoEncoding
+  public init(videoEncoding: FFCloudSDK.FFCVideoEncoding = FFCVideoEncoding())
+  @objc deinit
+}
+public class FFCVideoEncoding {
+  final public let maxBitrate: Swift.Int
+  final public let maxFps: Swift.Int
+  public init(maxBitrate: Swift.Int = 1_700_000, maxFps: Swift.Int = 30)
+  @objc deinit
+}
+public protocol FFCVideoRoomDelegate : AnyObject {
+  func videoRoomDidConnect(_ videoRoom: FFCloudSDK.FFCVideoRoom)
+  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, didFailToConnectWithError error: LiveKitClient.LiveKitError?)
+  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, didDisconnectWithError error: LiveKitClient.LiveKitError?)
+  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.LocalParticipant, didPublishTrack publication: LiveKitClient.LocalTrackPublication)
+  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.RemoteParticipant, didSubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
+  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.RemoteParticipant, didUnsubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
+}
+@_hasMissingDesignatedInitializers public class FFCVideoRoom {
+  weak public var delegate: (any FFCloudSDK.FFCVideoRoomDelegate)?
+  public var localParticipant: LiveKitClient.LocalParticipant {
+    get
+  }
+  public var remoteParticipants: [LiveKitClient.Participant.Identity : LiveKitClient.RemoteParticipant] {
+    get
+  }
+  public var sid: LiveKitClient.Room.Sid? {
+    get
+  }
+  public func getParticipantByIdentity(identity: LiveKitClient.Participant.Identity) -> LiveKitClient.Participant?
+  public func disconnect()
+  public func publishLocalVideo(enableMicrophone: Swift.Bool = true, enableCamera: Swift.Bool = true)
+  public func attachLocalVideo(track: any LiveKitClient.VideoTrack, localVideoView: UIKit.UIView)
+  public func attachRemoteVideo(track: any LiveKitClient.VideoTrack, remoteVideoView: UIKit.UIView)
+  public func enableLocalCamera(enabled: Swift.Bool)
+  public func enableLocalMicrophone(enabled: Swift.Bool)
+  @objc deinit
+}
+extension FFCloudSDK.FFCVideoRoom : LiveKitClient.RoomDelegate {
+  @objc dynamic public func roomDidConnect(_ room: LiveKitClient.Room)
+  @objc dynamic public func room(_ room: LiveKitClient.Room, didFailToConnectWithError error: LiveKitClient.LiveKitError?)
+  @objc dynamic public func room(_ room: LiveKitClient.Room, didDisconnectWithError error: LiveKitClient.LiveKitError?)
+  @objc dynamic public func room(_: LiveKitClient.Room, participant: LiveKitClient.LocalParticipant, didPublishTrack publication: LiveKitClient.LocalTrackPublication)
+  @objc dynamic public func room(_: LiveKitClient.Room, participant: LiveKitClient.RemoteParticipant, didSubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
+  @objc dynamic public func room(_ room: LiveKitClient.Room, participant: LiveKitClient.RemoteParticipant, didUnsubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
+}
+@objc @_inheritsConvenienceInitializers public class FFCloud : ObjectiveC.NSObject {
+  public static func connectWebRtcVideoRoom(webRtcServerUrl: Swift.String, webRtcToken: Swift.String, cameraCaptureOptions: FFCloudSDK.FFCCameraCaptureOptions = FFCCameraCaptureOptions(), videoPublishOptions: FFCloudSDK.FFCVideoPublishOptions = FFCVideoPublishOptions(), delegate: (any FFCloudSDK.FFCVideoRoomDelegate)? = nil) -> FFCloudSDK.FFCVideoRoom
+  @objc override dynamic public init()
+  @objc deinit
+}
 public protocol FFCStreamerDelegate : AnyObject {
   func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didUpdate streamKeyState: FFCloudSDK.StreamKeyState)
   func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didUpdate streamerState: FFCloudSDK.StreamerState)
