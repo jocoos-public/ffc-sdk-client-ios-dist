@@ -6,39 +6,39 @@
 	<dict>
 		<key>Headers/FFCloudSDK-Swift.h</key>
 		<data>
-		fIztuXP8Uco0TBy6cGYvjbCcvzs=
+		SyCg9fO1wLEOKtq7+bUg8FBF0Vc=
 		</data>
-		<key>Headers/FFCloudSDK.h</key>
+		<key>Headers/FlipFlopSDK_IOS.h</key>
 		<data>
-		OKKGaXqO5PrKvAehVbpyEGaNzdI=
+		uLlXMw+yZy++ON4Rf/3phQvtshc=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		2D1pnKEGHVhMeH4vgRQR+YSYSp8=
+		8CZW1g3rCYvEuzXSIU6kBqfMzJU=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		LDuvqkO2QF6aTrmVIjnp5djroZw=
+		9rhvu4HlUvmaRGmHryD9cvi/U2k=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		nMJD7bR5QbJg7guIwdsEJkvRTzE=
+		USiV8Q65ICcaqYseo+fhnJZnqJ8=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		iA2yAInWsb/sm/0ua1OuX6CcsxU=
+		QRPvbbaKBRXesdPa9P97cX13GiY=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		nMJD7bR5QbJg7guIwdsEJkvRTzE=
+		USiV8Q65ICcaqYseo+fhnJZnqJ8=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		NkRhS9AjBLrdSvRl9NP7cSTN59k=
+		e7Wdqm2Db/j5dlY/7OHP+P342bM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		8nX7edFbhMEDAE7uYJ496pCyHZk=
+		FbIvgQmr51r8+tlDWlYZsJen4dg=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -47,56 +47,56 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ex5TdgPiuTT6AyXmgRlZIQmg9u5LOMBF/ZUhshM/sTI=
+			DOc7sjAhr42TBXHtCNUb2hyanpEFHhSsRQtqmZLXxwQ=
 			</data>
 		</dict>
-		<key>Headers/FFCloudSDK.h</key>
+		<key>Headers/FlipFlopSDK_IOS.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WBwwUd3Y6qVzg9Cpo+moKwGAk7Nk7fbHJzqw23WXLws=
+			8Jn5LMb9RuDkdGAfc1L9xpVLC42mO46NhTHdNi0lthY=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			UfdPgyW/7bADH5sILl7N/IGPynze1ZC99hLZU6IUlAE=
+			BizETPYyV8xUceg7inxUVzVMcPXDRNuiFEGA1IRhEq4=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ftV8u8BbxgWaQbgc40ZQbWkxpT+I+Cjt2vHZKX++hao=
+			7fudZgUJ6y3JWIcJsQzgVzeQoYtTk0m5EDwPEFYos6A=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rhzLZhixRlDNVe32bknrKEHOVWLUPOZf2XsxUQzq4OQ=
+			4e94lL/VyKGpZhRgwVyWRbSmskHfBr0cmbn49aSqMFs=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ftV8u8BbxgWaQbgc40ZQbWkxpT+I+Cjt2vHZKX++hao=
+			7fudZgUJ6y3JWIcJsQzgVzeQoYtTk0m5EDwPEFYos6A=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5AYUa4nwSiciq7GCGSIral+y87J+DzZktMKrh+DFR0s=
+			FBNICF+oDOj0ohKLluld3la2XorBquGOVsfN+47S6dw=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			S/Uo49VVYYOk1eC+hDNavWNbypzPd8gJLPuTwS0AUo8=
+			cBn2YMeOL+KQ42V/uTi6wc2BzSWAxPAMiu5G0+L7lOY=
 			</data>
 		</dict>
 	</dict>

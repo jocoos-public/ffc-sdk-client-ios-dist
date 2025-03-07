@@ -2,208 +2,2250 @@
 // swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)
 // swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FFCloudSDK
 // swift-module-flags-ignorable: -enable-bare-slash-regex
-@_exported import FFCloudSDK
+import AVFAudio
+import AVFoundation
+import AVKit
+import AudioToolbox
+import CoreAudio
+import CoreFoundation
+import CoreImage
+import CoreMedia
+import CoreVideo
+import DeviceKit
+import FFmpegKit_mysangle
 import Foundation
-import LiveKitClient
+import GLKit
+import ImageIO
+import KSPlayer_mysangle
+import LDSwiftEventSource
 import Logboard
+import MetalKit
+import Network
+import OSLog
 import Swift
+import SystemConfiguration
 import UIKit
+import VideoToolbox
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-@_hasMissingDesignatedInitializers public class FFCRemoteTrackPublication {
-  public var track: FFCloudSDK.FFCTrack?
-  @objc deinit
+public protocol FFCStreamerDelegate : AnyObject {
+  func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didUpdate streamKeyState: FFCloudSDK.StreamKeyState)
+  func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didUpdate streamerState: FFCloudSDK.StreamerState)
+  func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didUpdate broadcastState: FFCloudSDK.BroadcastState)
+  func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didExist videoRoom: FFCloudSDK.FFLVideoRoom)
+  func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didPublish alarmState: FFCloudSDK.AlarmState)
+  func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didChangeVideoBitrate bitrate: Swift.Int)
+  func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didChangeZoom zoomFactor: CoreFoundation.CGFloat)
+  func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didOpenChannel channelId: Swift.UInt64)
+  func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didReceive message: FFCloudSDK.FFLMessage)
+  func ffcStreamer(_ streamer: FFCloudSDK.FFCStreamer, didFail error: FFCloudSDK.FFError)
 }
-public class FFCVideoRoomOptions {
-  final public let dimensions: FFCloudSDK.FFCDimensions
-  final public let videoEncoding: FFCloudSDK.FFCVideoEncoding
-  public init(dimensions: FFCloudSDK.FFCDimensions = FFCDimensions(), videoEncoding: FFCloudSDK.FFCVideoEncoding = FFCVideoEncoding())
-  @objc deinit
-}
-public class FFCCameraCaptureOptions {
-  final public let dimensions: FFCloudSDK.FFCDimensions
-  public init(dimensions: FFCloudSDK.FFCDimensions = FFCDimensions())
-  @objc deinit
-}
-public class FFCDimensions {
-  final public let width: Swift.Int32
-  final public let height: Swift.Int32
-  public init(width: Swift.Int32 = 1280, height: Swift.Int32 = 720)
-  @objc deinit
-}
-public class FFCVideoPublishOptions {
-  final public let videoEncoding: FFCloudSDK.FFCVideoEncoding
-  public init(videoEncoding: FFCloudSDK.FFCVideoEncoding = FFCVideoEncoding())
-  @objc deinit
-}
-public class FFCVideoEncoding {
-  final public let maxBitrate: Swift.Int
-  final public let maxFps: Swift.Int
-  public init(maxBitrate: Swift.Int = 1_700_000, maxFps: Swift.Int = 30)
-  @objc deinit
-}
-@_hasMissingDesignatedInitializers public class FFCApi {
-  public typealias APIResult<T> = ((FFCloudSDK.FFCApi.Result<T>) -> Swift.Void)? where T : Swift.Decodable
-  @_hasMissingDesignatedInitializers final public class Model<T> where T : Swift.Decodable {
-    final public let value: T
-    @objc deinit
+@objc @_hasMissingDesignatedInitializers public class FFCStreamer : ObjectiveC.NSObject {
+  weak public var delegate: (any FFCloudSDK.FFCStreamerDelegate)?
+  public var isGestureEnabled: Swift.Bool {
+    get
+    set
   }
-  public enum Result<T> where T : Swift.Decodable {
-    case Error(any Swift.Error)
-    case Fail(FFCloudSDK.FFCApi.Model<FFCloudSDK.FFCFail>)
-    case Success(FFCloudSDK.FFCApi.Model<T>)
-  }
+  public func setVideoRoomInfo(title: Swift.String)
+  public func enter(videoRoomId: Swift.UInt64? = nil, requestVideoRoomStart: Swift.Bool = false)
+  public func setRtmpOutputMode(rtmpOutputMode: FFCloudSDK.RtmpOutputMode)
+  public func prepare(preview: UIKit.UIView, config: FFCloudSDK.FFStreamerConfig = FFStreamerConfig())
+  public func start()
+  public func restart(videoRoomId: Swift.UInt64)
+  public func stop()
+  public func startVideoRoom(videoRoomId: Swift.UInt64? = nil)
+  public func endVideoRoom(videoRoomId: Swift.UInt64? = nil)
+  public func exit(videoRoomId: Swift.UInt64? = nil)
+  public func retry()
+  public func openCamera()
+  public func releaseCamera()
+  public func liveChat() -> FFCloudSDK.FFLChannel?
+  public func liveManager() -> FFCloudSDK.FFLLiveManager?
   @objc deinit
 }
-extension FFCloudSDK.FFCApi {
-  public func createVideoRoom(title: Swift.String, description: Swift.String, password: Swift.String? = nil, customType: Swift.String? = nil, customData: [Swift.String : Swift.String]? = nil, completion: FFCloudSDK.FFCApi.APIResult<FFCloudSDK.VideoRoomInfo>)
-  public func listVideoRooms(videoRoomState: Swift.String? = nil, type: Swift.String? = nil, sortBy: Swift.String? = nil, page: Swift.UInt64? = nil, pageSize: Swift.UInt64? = nil, completion: FFCloudSDK.FFCApi.APIResult<FFCloudSDK.VideoRoomInfoList>)
-  public func getVideoRoom(videoRoomId: Swift.UInt64, completion: FFCloudSDK.FFCApi.APIResult<FFCloudSDK.VideoRoomInfo>)
-  public func issueWebRtcVideoRoomToken(videoRoomId: Swift.UInt64, password: Swift.String? = nil, customData: [Swift.String : Swift.String]? = nil, completion: FFCloudSDK.FFCApi.APIResult<FFCloudSDK.WebRtcVideoTokenInfo>)
+extension FFCloudSDK.FFCStreamer {
+  public func onInSufficentBW()
+  public func onSufficentBW()
+  public func onRTMPConnected()
+  public func onRTMPDisconnected()
+  public func onRTMPStarted()
+  public func onRTMPStatus(notification: Foundation.Notification)
+  public func onRTMPStopped()
+  public func onRTMPError(code: Swift.Int, description: Swift.String)
+  public func onVideoBitrateChanged(newBitrate: Swift.Int, maxBitrate: Swift.Int)
+  public func onAlarmchanged(insufficientCount: Swift.Int)
 }
-@_hasMissingDesignatedInitializers public class FFCRemoteParticipant {
+extension FFCloudSDK.FFCStreamer {
+  public func onZoomChanged(zoomFactor: CoreFoundation.CGFloat)
+}
+public enum AECAudioStreamError : Swift.Error {
+  case osStatusError(status: Darwin.OSStatus)
+}
+public class AECAudioStream {
+  public var rendererClosure: ((Swift.UnsafeMutablePointer<CoreAudioTypes.AudioBufferList>, Swift.UInt32) -> Swift.Void)?
+  public var enableRendererCallback: Swift.Bool
+  public init(sampleRate: Swift.Float64, enableRendererCallback: Swift.Bool = false, rendererClosure: ((Swift.UnsafeMutablePointer<CoreAudioTypes.AudioBufferList>, Swift.UInt32) -> Swift.Void)? = nil)
+  public func startAudioStream(enableAEC: Swift.Bool, enableRendererCallback: Swift.Bool = false, rendererClosure: ((Swift.UnsafeMutablePointer<CoreAudioTypes.AudioBufferList>, Swift.UInt32) -> Swift.Void)? = nil) throws
+  public func stopAudioUnit() throws
+  public func resetAudioMode()
   @objc deinit
 }
-public protocol FFCVideoRoomDelegate : AnyObject {
-  func videoRoomDidConnect(_ videoRoom: FFCloudSDK.FFCVideoRoom)
-  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, didFailToConnectWithError error: LiveKitClient.LiveKitError?)
-  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, didDisconnectWithError error: LiveKitClient.LiveKitError?)
-  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.LocalParticipant, didPublishTrack publication: LiveKitClient.LocalTrackPublication)
-  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.RemoteParticipant, didSubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
-  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.RemoteParticipant, didUnsubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
-}
-@_hasMissingDesignatedInitializers public class FFCVideoRoom {
-  weak public var delegate: (any FFCloudSDK.FFCVideoRoomDelegate)?
-  public var localParticipant: LiveKitClient.LocalParticipant {
+public enum StreamKeyState {
+  case active_prep
+  case active_live_prep
+  case active
+  case active_live
+  case inactive_live
+  case inactive
+  public static func == (a: FFCloudSDK.StreamKeyState, b: FFCloudSDK.StreamKeyState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
     get
   }
-  public var remoteParticipants: [LiveKitClient.Participant.Identity : LiveKitClient.RemoteParticipant] {
+}
+public enum Origin {
+  case app
+  case members
+  case system
+  public static func == (a: FFCloudSDK.Origin, b: FFCloudSDK.Origin) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
     get
   }
-  public var sid: LiveKitClient.Room.Sid? {
-    get
-  }
-  public func getParticipantByIdentity(identity: LiveKitClient.Participant.Identity) -> LiveKitClient.Participant?
-  public func disconnect()
-  public func publishLocalVideo(enableMicrophone: Swift.Bool = true, enableCamera: Swift.Bool = true)
-  public func attachLocalVideo(track: any LiveKitClient.VideoTrack, localVideoView: UIKit.UIView)
-  public func attachRemoteVideo(track: any LiveKitClient.VideoTrack, remoteVideoView: UIKit.UIView)
-  public func enableLocalCamera(enabled: Swift.Bool)
-  public func enableLocalMicrophone(enabled: Swift.Bool)
+}
+public struct FFLMessage {
+  public let messageId: Swift.String
+  public let sentAt: Swift.String
+  public let origin: FFCloudSDK.Origin
+  public let appUserId: Swift.String
+  public let appUsername: Swift.String
+  public let customType: Swift.String
+  public let message: Swift.String
+  public let participantCount: Swift.UInt64?
+}
+public struct FFLVideoRoom {
+  public let id: Swift.UInt64
+  public let state: Swift.String
+  public let videoRoomState: Swift.String
+  public let type: Swift.String
+  public let title: Swift.String
+}
+@objc @_hasMissingDesignatedInitializers public class FFLRoom : ObjectiveC.NSObject {
   @objc deinit
 }
-extension FFCloudSDK.FFCVideoRoom : LiveKitClient.RoomDelegate {
-  @objc dynamic public func roomDidConnect(_ room: LiveKitClient.Room)
-  @objc dynamic public func room(_ room: LiveKitClient.Room, didFailToConnectWithError error: LiveKitClient.LiveKitError?)
-  @objc dynamic public func room(_ room: LiveKitClient.Room, didDisconnectWithError error: LiveKitClient.LiveKitError?)
-  @objc dynamic public func room(_: LiveKitClient.Room, participant: LiveKitClient.LocalParticipant, didPublishTrack publication: LiveKitClient.LocalTrackPublication)
-  @objc dynamic public func room(_: LiveKitClient.Room, participant: LiveKitClient.RemoteParticipant, didSubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
-  @objc dynamic public func room(_ room: LiveKitClient.Room, participant: LiveKitClient.RemoteParticipant, didUnsubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
+public enum TransitionType {
+  case none
+  case fade_in_out
+  case slide_to_left
+  case slide_to_top
+  case slide_to_camera_bottom
+  case fade_in_pip
+  case enter_top
+  case enter_fade_in
+  public static func == (a: FFCloudSDK.TransitionType, b: FFCloudSDK.TransitionType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
 }
-@objc @_inheritsConvenienceInitializers public class FFCloud : ObjectiveC.NSObject {
-  public static func api(url: Swift.String, accessToken: Swift.String) -> FFCloudSDK.FFCApi
-  public static func connectWebRtcVideoRoom(webRtcServerUrl: Swift.String, webRtcToken: Swift.String, cameraCaptureOptions: FFCloudSDK.FFCCameraCaptureOptions = FFCCameraCaptureOptions(), videoPublishOptions: FFCloudSDK.FFCVideoPublishOptions = FFCVideoPublishOptions(), delegate: (any FFCloudSDK.FFCVideoRoomDelegate)? = nil) -> FFCloudSDK.FFCVideoRoom
+public struct TransitionParams {
+  public init(transitionType: FFCloudSDK.TransitionType = .slide_to_left, duration: Foundation.TimeInterval = 0.3, pipTop: CoreFoundation.CGFloat = 0.2, pipRight: CoreFoundation.CGFloat = 0.2, pipRatio: CoreFoundation.CGFloat = 0.2, cameraRatio: CoreFoundation.CGFloat = 0.5)
+}
+@objc @_hasMissingDesignatedInitializers public class FFLLiveManager : ObjectiveC.NSObject {
+  public var exposureTargetBias: Swift.Float {
+    get
+    set
+  }
+  public func switchCamera()
+  public func videoMirror(mirror: Swift.Bool)
+  public func zoom(factor: CoreFoundation.CGFloat)
+  public func getCameraZoomInfo() -> FFCloudSDK.ZoomInfo
+  public func setPipMode(backgroundImage: UIKit.UIImage?, offsetX: CoreFoundation.CGFloat = 100, offsetY: CoreFoundation.CGFloat = 20, scale: CoreFoundation.CGFloat = 0.25)
+  public func showImage(overlayImage: UIKit.UIImage, transitionParams: FFCloudSDK.TransitionParams = TransitionParams())
+  public func hideImage(transitionParams: FFCloudSDK.TransitionParams? = nil)
+  public func setOverlayImage(named: Swift.String, completion: (() -> Swift.Void)?) throws
+  public func setFilter(filter: FFCloudSDK.VideoFilter)
+  public func playVideo(asset: AVFoundation.AVAsset)
+  public func stopVideo()
+  public func setPointOfInterest(focus: CoreFoundation.CGPoint)
+  public func setPointOfInterest(exposure: CoreFoundation.CGPoint)
+  public func muteAudio(on: Swift.Bool)
+  public func isAudioMuted() -> Swift.Bool
+  public func muteVideo(on: Swift.Bool)
+  public func isVideoMuted() -> Swift.Bool
+  public func enableAutoFocus()
+  public func disableAutoFocus()
+  public func minExposureTargetBias() -> Swift.Float
+  public func maxExposureTargetBias() -> Swift.Float
+  public func setExposureTargetBias(value: Swift.Float)
+  public func setAutoExposureLock(toggle: Swift.Bool)
+  public func getAutoExposureLock() -> Swift.Bool
+  public func setVideoBitrateOnFly(bitrate: Swift.Int)
+  public func getVideoBitrateOnFly() -> Swift.Int
+  public func enableAdaptiveBitrate()
+  public func disableAdaptiveBitrate()
+  public func getCurrentBitrate() -> Swift.Int
+  @objc deinit
+}
+public let kASUndefined: FFCloudSDK.ASUndefined
+public typealias ASObject = [Swift.String : Any?]
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers final public class ASUndefined : ObjectiveC.NSObject {
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+public struct ASTypedObject {
+  public typealias TypedObjectDecoder = (_ type: Swift.String, _ data: FFCloudSDK.ASObject) throws -> Any
+  public static func register(typeNamed name: Swift.String, decoder: @escaping FFCloudSDK.ASTypedObject.TypedObjectDecoder)
+  public static func register<T>(type: T.Type, named name: Swift.String) where T : Swift.Decodable
+  public static func unregister(typeNamed name: Swift.String)
+}
+public struct ASArray {
+  public var length: Swift.Int {
+    get
+  }
+  public init(count: Swift.Int)
+  public init(data: [Any?])
+}
+extension FFCloudSDK.ASArray : Swift.ExpressibleByArrayLiteral {
+  public init(arrayLiteral elements: Any?...)
+  public subscript(i: Any) -> Any? {
+    get
+    set
+  }
+  public typealias ArrayLiteralElement = Any?
+}
+extension FFCloudSDK.ASArray : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension FFCloudSDK.ASArray : Swift.Equatable {
+  public static func == (lhs: FFCloudSDK.ASArray, rhs: FFCloudSDK.ASArray) -> Swift.Bool
+}
+@objc final public class ASXMLDocument : ObjectiveC.NSObject {
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  public init(data: Swift.String)
+  @objc deinit
+}
+@objc final public class ASXML : ObjectiveC.NSObject {
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  public init(data: Swift.String)
+  @objc deinit
+}
+extension CoreAudioTypes.AudioStreamBasicDescription : Swift.Equatable {
+  public static func == (lhs: CoreAudioTypes.AudioStreamBasicDescription, rhs: CoreAudioTypes.AudioStreamBasicDescription) -> Swift.Bool
+}
+public struct DeviceUtil {
+  public static func device(withPosition: AVFoundation.AVCaptureDevice.Position) -> AVFoundation.AVCaptureDevice?
+}
+public enum StreamerState {
+  case prepared
+  case started
+  case stopped
+  case closed
+  case terminated
+  public static func == (a: FFCloudSDK.StreamerState, b: FFCloudSDK.StreamerState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum BroadcastState {
+  case inactive
+  case active
+  public static func == (a: FFCloudSDK.BroadcastState, b: FFCloudSDK.BroadcastState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum PlayerState {
+  case prepared
+  case started
+  case paused
+  case stopped
+  case completed
+  case closed
+  public static func == (a: FFCloudSDK.PlayerState, b: FFCloudSDK.PlayerState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol FFLStreamerDelegate : AnyObject {
+  func fflStreamer(_ streamer: FFCloudSDK.FFLStreamer, didUpdate streamerState: FFCloudSDK.StreamerState)
+  func fflStreamer(_ streamer: FFCloudSDK.FFLStreamer, didUpdate broadcastState: FFCloudSDK.BroadcastState)
+  func fflStreamer(_ streamer: FFCloudSDK.FFLStreamer, didExist videoRoom: FFCloudSDK.FFLVideoRoom)
+  func fflStreamer(_ streamer: FFCloudSDK.FFLStreamer, didPublish alarmState: FFCloudSDK.AlarmState)
+  func fflStreamer(_ streamer: FFCloudSDK.FFLStreamer, didChangeVideoBitrate bitrate: Swift.Int)
+  func fflStreamer(_ streamer: FFCloudSDK.FFLStreamer, didChangeZoom zoomFactor: CoreFoundation.CGFloat)
+  func fflStreamer(_ streamer: FFCloudSDK.FFLStreamer, didOpenChannel channelId: Swift.UInt64)
+  func fflStreamer(_ streamer: FFCloudSDK.FFLStreamer, didReceive message: FFCloudSDK.FFLMessage)
+  func fflStreamer(_ streamer: FFCloudSDK.FFLStreamer, didFail error: FFCloudSDK.FFError)
+}
+public enum AlarmState {
+  case normal
+  case alert_level_1
+  case alert_level_2
+  case alert_level_3
+  public static func == (a: FFCloudSDK.AlarmState, b: FFCloudSDK.AlarmState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum RtmpOutputMode {
+  case cmaf
+  case rtmp
+  case rtmp_cmaf
+  public static func == (a: FFCloudSDK.RtmpOutputMode, b: FFCloudSDK.RtmpOutputMode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol FFAlarmDelegate : AnyObject {
+  func onAlarmPublished(state: FFCloudSDK.AlarmState)
+}
+@objc @_hasMissingDesignatedInitializers public class FFLStreamer : ObjectiveC.NSObject {
+  weak public var delegate: (any FFCloudSDK.FFLStreamerDelegate)?
+  public var isGestureEnabled: Swift.Bool {
+    get
+    set
+  }
+  public func setVideoRoomInfo(title: Swift.String)
+  public func enter(videoRoomId: Swift.UInt64? = nil, requestVideoRoomStart: Swift.Bool = false)
+  public func setRtmpOutputMode(rtmpOutputMode: FFCloudSDK.RtmpOutputMode)
+  public func prepare(preview: UIKit.UIView, config: FFCloudSDK.FFStreamerConfig = FFStreamerConfig())
+  public func start()
+  public func restart(videoRoomId: Swift.UInt64)
+  public func stop()
+  public func exit(videoRoomId: Swift.UInt64? = nil)
+  public func retry()
+  public func openCamera()
+  public func releaseCamera()
+  public func liveChat() -> FFCloudSDK.FFLChannel?
+  public func liveManager() -> FFCloudSDK.FFLLiveManager?
+  @objc deinit
+}
+extension FFCloudSDK.FFLStreamer {
+  public func onInSufficentBW()
+  public func onSufficentBW()
+  public func onRTMPConnected()
+  public func onRTMPDisconnected()
+  public func onRTMPStarted()
+  public func onRTMPStatus(notification: Foundation.Notification)
+  public func onRTMPStopped()
+  public func onRTMPError(code: Swift.Int, description: Swift.String)
+  public func onVideoBitrateChanged(newBitrate: Swift.Int, maxBitrate: Swift.Int)
+  public func onAlarmchanged(insufficientCount: Swift.Int)
+}
+extension FFCloudSDK.FFLStreamer {
+  public func onZoomChanged(zoomFactor: CoreFoundation.CGFloat)
+}
+public protocol Running : AnyObject {
+  var isRunning: FFCloudSDK.Atomic<Swift.Bool> { get }
+  func startRunning()
+  func stopRunning()
+}
+@objc @_hasMissingDesignatedInitializers public class FlipFlop : ObjectiveC.NSObject {
+  public static var AppKey: Swift.String {
+    get
+  }
+  public static var AppSecret: Swift.String {
+    get
+  }
+  public var userID: Swift.String {
+    get
+  }
+  public var userName: Swift.String {
+    get
+  }
+  public var avatarProfileURL: Swift.String {
+    get
+  }
+  @objc deinit
+  public static func authentication(userID: Swift.String, userName: Swift.String, avatarProfileURL: Swift.String, completion: ((Swift.Result<FFCloudSDK.FlipFlop, FFCloudSDK.FFError>) -> Swift.Void)?)
+}
+public enum FLVAVCPacketType : Swift.UInt8 {
+  case seq
+  case nal
+  case eos
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
+}
+public enum FLVFrameType : Swift.UInt8 {
+  case key
+  case inter
+  case disposable
+  case generated
+  case command
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
+}
+extension UIKit.UIColor {
+  public func imageWithColor(width: CoreFoundation.CGFloat, height: CoreFoundation.CGFloat) -> UIKit.UIImage
+}
+extension CoreImage.CIImage {
+  public class func image(width: CoreFoundation.CGFloat, height: CoreFoundation.CGFloat, color: UIKit.UIColor, cornerRadius: CoreFoundation.CGFloat) -> CoreImage.CIImage
+  public class func alphaImage(width: CoreFoundation.CGFloat, height: CoreFoundation.CGFloat, color: UIKit.UIColor, cornerRadius: CoreFoundation.CGFloat, alpha: CoreFoundation.CGFloat) -> CoreImage.CIImage
+}
+public protocol RTMPPlayerDelegate : AnyObject {
+  func onRTMPStarted(player: any FFCloudSDK.RTMPPlayer)
+  func onRTMPBuffering(player: any FFCloudSDK.RTMPPlayer)
+  func onRTMPBufferFinished(player: any FFCloudSDK.RTMPPlayer)
+  func onRTMPPaused(player: any FFCloudSDK.RTMPPlayer)
+  func onRTMPStopped(player: any FFCloudSDK.RTMPPlayer)
+  func onRTMPCompleted(player: any FFCloudSDK.RTMPPlayer)
+  func onRTMPError(player: any FFCloudSDK.RTMPPlayer, code: Swift.Int, message: Swift.String)
+}
+public protocol RTMPPlayer {
+  func start()
+  func stop()
+  func updatePlayerItem(url: Foundation.URL)
+}
+public enum RTMPPlayerState {
+  case ready
+  case started
+  case stopped
+  case buffering
+  case bufferFinished
+  case paused
+  case resumed
+  case ended
+  public static func == (a: FFCloudSDK.RTMPPlayerState, b: FFCloudSDK.RTMPPlayerState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class HKView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public static var defaultBackgroundColor: UIKit.UIColor
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open class var layerClass: Swift.AnyClass {
+    @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open var layer: AVFoundation.AVCaptureVideoPreviewLayer {
+    @objc get
+  }
+  @_Concurrency.MainActor(unsafe) public var videoGravity: AVFoundation.AVLayerVideoGravity {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var videoFormatDescription: CoreMedia.CMVideoFormatDescription? {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func awakeFromNib()
+  @_Concurrency.MainActor(unsafe) open func attachStream(_ stream: FFCloudSDK.NetStream?)
+}
+public enum FLVTagType : Swift.UInt8 {
+  case audio
+  case video
+  case data
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
+}
+public protocol FLVTag : Swift.CustomDebugStringConvertible {
+  var tagType: FFCloudSDK.FLVTagType { get set }
+  var dataSize: Swift.UInt32 { get set }
+  var timestamp: Swift.UInt32 { get set }
+  var timestampExtended: Swift.UInt8 { get set }
+  var streamId: Swift.UInt32 { get set }
+  var offset: Swift.UInt64 { get set }
+  init()
+  mutating func readData(_ fileHandler: Foundation.FileHandle)
+}
+extension FFCloudSDK.FLVTag {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public struct FLVDataTag : FFCloudSDK.FLVTag {
+  public var tagType: FFCloudSDK.FLVTagType
+  public var dataSize: Swift.UInt32
+  public var timestamp: Swift.UInt32
+  public var timestampExtended: Swift.UInt8
+  public var streamId: Swift.UInt32
+  public var offset: Swift.UInt64
+  public init()
+  public mutating func readData(_ fileHandler: Foundation.FileHandle)
+}
+public struct FLVAudioTag : FFCloudSDK.FLVTag {
+  public var tagType: FFCloudSDK.FLVTagType
+  public var dataSize: Swift.UInt32
+  public var timestamp: Swift.UInt32
+  public var timestampExtended: Swift.UInt8
+  public var streamId: Swift.UInt32
+  public var offset: Swift.UInt64
+  public var codec: FFCloudSDK.FLVAudioCodec
+  public var soundRate: FFCloudSDK.FLVSoundRate
+  public var soundSize: FFCloudSDK.FLVSoundSize
+  public var soundType: FFCloudSDK.FLVSoundType
+  public init()
+  public mutating func readData(_ fileHandler: Foundation.FileHandle)
+}
+public struct FLVVideoTag : FFCloudSDK.FLVTag {
+  public var tagType: FFCloudSDK.FLVTagType
+  public var dataSize: Swift.UInt32
+  public var timestamp: Swift.UInt32
+  public var timestampExtended: Swift.UInt8
+  public var streamId: Swift.UInt32
+  public var offset: Swift.UInt64
+  public var frameType: FFCloudSDK.FLVFrameType
+  public var codec: FFCloudSDK.FLVVideoCodec
+  public var avcPacketType: FFCloudSDK.FLVAVCPacketType
+  public var compositionTime: Swift.Int32
+  public init()
+  public mutating func readData(_ fileHandler: Foundation.FileHandle)
+}
+@objc public protocol SwiftyGifDelegate {
+  @objc optional func gifDidStart(sender: UIKit.UIImage)
+  @objc optional func gifDidLoop(sender: UIKit.UIImage)
+  @objc optional func gifDidStop(sender: UIKit.UIImage)
+  @objc optional func gifURLDidFinish(sender: UIKit.UIImage)
+  @objc optional func gifURLDidFail(sender: UIKit.UIImage, url: Foundation.URL, error: (any Swift.Error)?)
+}
+public typealias GifLevelOfIntegrity = Swift.Float
+extension Swift.Float {
+  public static let highestNoFrameSkipping: FFCloudSDK.GifLevelOfIntegrity
+  public static let `default`: FFCloudSDK.GifLevelOfIntegrity
+  public static let lowForManyGifs: FFCloudSDK.GifLevelOfIntegrity
+  public static let lowForTooManyGifs: FFCloudSDK.GifLevelOfIntegrity
+  public static let superLowForSlideShow: FFCloudSDK.GifLevelOfIntegrity
+}
+extension UIKit.UIImage {
+  convenience public init?(imageData: Foundation.Data, levelOfIntegrity: FFCloudSDK.GifLevelOfIntegrity = .default) throws
+  convenience public init?(imageName: Swift.String, levelOfIntegrity: FFCloudSDK.GifLevelOfIntegrity = .default) throws
+}
+extension UIKit.UIImage {
+  convenience public init(gifData: Foundation.Data, levelOfIntegrity: FFCloudSDK.GifLevelOfIntegrity = .default) throws
+  convenience public init(gifName: Swift.String, levelOfIntegrity: FFCloudSDK.GifLevelOfIntegrity = .default) throws
+  public func setGifFromData(_ data: Foundation.Data, levelOfIntegrity: FFCloudSDK.GifLevelOfIntegrity) throws
+  public func setGif(_ name: Swift.String) throws
+  public func framesCount() -> Swift.Int
+  public func setGif(_ name: Swift.String, levelOfIntegrity: FFCloudSDK.GifLevelOfIntegrity) throws
+  public func clear()
+}
+extension UIKit.UIImage {
+  public var imageSource: ImageIO.CGImageSource? {
+    get
+    set
+  }
+  public var displayRefreshFactor: Swift.Int? {
+    get
+    set
+  }
+  public var imageSize: Swift.Int? {
+    get
+    set
+  }
+  public var imageCount: Swift.Int? {
+    get
+    set
+  }
+  public var displayOrder: [Swift.Int]? {
+    get
+    set
+  }
+  public var delays: [Swift.Int]? {
+    get
+    set
+  }
+  public var startDelayTime: Swift.Int64 {
+    get
+    set
+  }
+  public var imageData: Foundation.Data? {
+    get
+    set
+  }
+  public var delegate: (any FFCloudSDK.SwiftyGifDelegate)? {
+    get
+    set
+  }
+}
+public protocol FFLLivePlayerDelegate : AnyObject {
+  func fflLivePlayer(_ livePlayer: FFCloudSDK.FFLLivePlayer, didUpdate playerState: FFCloudSDK.PlayerState)
+  func fflLivePlayer(_ livePlayer: FFCloudSDK.FFLLivePlayer, didUpdate broadcastState: FFCloudSDK.BroadcastState)
+  func fflLivePlayer(_ livePlayer: FFCloudSDK.FFLLivePlayer, didUpdate liveUrl: Swift.String)
+  func fflLivePlayer(_ livePlayer: FFCloudSDK.FFLLivePlayer, didOpenChannel channelId: Swift.UInt64)
+  func fflLivePlayer(_ livePlayer: FFCloudSDK.FFLLivePlayer, didReceive message: FFCloudSDK.FFLMessage)
+  func fflLivePlayer(_ livePlayer: FFCloudSDK.FFLLivePlayer, didFail error: FFCloudSDK.FFError)
+}
+@objc @_inheritsConvenienceInitializers public class FFLLivePlayerOptions : ObjectiveC.NSObject {
+  public var lowLatency: Swift.Bool
   @objc override dynamic public init()
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
   @objc deinit
 }
-@_hasMissingDesignatedInitializers public class FFCLocalTrackPublication {
-  public var track: FFCloudSDK.FFCTrack?
+@objc @_hasMissingDesignatedInitializers public class FFLLivePlayer : ObjectiveC.NSObject {
+  weak public var delegate: (any FFCloudSDK.FFLLivePlayerDelegate)?
+  public func enter()
+  public func prepare(view: UIKit.UIView, uri: Swift.String, options: FFCloudSDK.FFLLivePlayerOptions = FFLLivePlayerOptions())
+  public func start()
+  public func stop()
+  public func exit()
+  public func setFrame(frame: CoreFoundation.CGRect)
+  public func liveChat() -> FFCloudSDK.FFLChannel?
+  public func mute(on: Swift.Bool)
   @objc deinit
 }
-public enum FFCErrorType : Swift.Int, Swift.Sendable {
+extension FFCloudSDK.FFLLivePlayer : FFCloudSDK.HLSPlayerDelegate {
+  public func onProgressUpdated(player: FFCloudSDK.HLSPlayer, seconds: Swift.Float64)
+  public func onPrepared(player: FFCloudSDK.HLSPlayer)
+  public func onPaused(player: FFCloudSDK.HLSPlayer)
+  public func onStarted(player: FFCloudSDK.HLSPlayer)
+  public func onFailedToPlay(player: FFCloudSDK.HLSPlayer)
+  public func onStopped(player: FFCloudSDK.HLSPlayer)
+  public func onCompleted(player: FFCloudSDK.HLSPlayer)
+  public func onError(player: FFCloudSDK.HLSPlayer, error: any Swift.Error)
+  public func onVideoResolutionSize(player: FFCloudSDK.HLSPlayer, size: CoreFoundation.CGSize)
+  public func onBackground(player: FFCloudSDK.HLSPlayer)
+  public func onForeground(player: FFCloudSDK.HLSPlayer)
+}
+extension FFCloudSDK.FFLLivePlayer : FFCloudSDK.RTMPPlayerDelegate {
+  public func onRTMPStarted(player: any FFCloudSDK.RTMPPlayer)
+  public func onRTMPBuffering(player: any FFCloudSDK.RTMPPlayer)
+  public func onRTMPBufferFinished(player: any FFCloudSDK.RTMPPlayer)
+  public func onRTMPPaused(player: any FFCloudSDK.RTMPPlayer)
+  public func onRTMPStopped(player: any FFCloudSDK.RTMPPlayer)
+  public func onRTMPCompleted(player: any FFCloudSDK.RTMPPlayer)
+  public func onRTMPError(player: any FFCloudSDK.RTMPPlayer, code: Swift.Int, message: Swift.String)
+}
+public struct ZoomInfo {
+  public let min: CoreFoundation.CGFloat
+  public let max: CoreFoundation.CGFloat
+}
+public enum VideoFilter {
+  case none
+  case sephia(value: Swift.Float)
+  case blendMaks(overlayImage: CoreImage.CIImage, maskImage: CoreImage.CIImage)
+  case sourceOverComposit(overlayImage: CoreImage.CIImage)
+  case colorOverlay(color: UIKit.UIColor)
+  case custom(effect: FFCloudSDK.VideoEffect)
+}
+public struct MachUtil {
+  public static let nanosPerUsec: Swift.UInt64
+  public static let nanosPerMsec: Swift.UInt64
+  public static let nanosPerSec: Swift.UInt64
+  public static func nanosToAbs(_ nanos: Swift.UInt64) -> Swift.UInt64
+  public static func absToNanos(_ abs: Swift.UInt64) -> Swift.UInt64
+}
+public struct Atomic<A> {
+  public var value: A {
+    get
+  }
+  public init(_ value: A)
+  public mutating func mutate(_ transform: (inout A) -> Swift.Void)
+}
+public enum ReachabilityError : Swift.Error {
+  case failedToCreateWithAddress(Darwin.sockaddr, Swift.Int32)
+  case failedToCreateWithHostname(Swift.String, Swift.Int32)
+  case unableToSetCallback(Swift.Int32)
+  case unableToSetDispatchQueue(Swift.Int32)
+  case unableToGetFlags(Swift.Int32)
+}
+extension Foundation.NSNotification.Name {
+  public static let reachabilityChanged: Foundation.Notification.Name
+}
+public class Reachability {
+  public typealias NetworkReachable = (FFCloudSDK.Reachability) -> ()
+  public typealias NetworkUnreachable = (FFCloudSDK.Reachability) -> ()
+  public enum Connection : Swift.CustomStringConvertible {
+    case unavailable, wifi, cellular
+    public var description: Swift.String {
+      get
+    }
+    public static func == (a: FFCloudSDK.Reachability.Connection, b: FFCloudSDK.Reachability.Connection) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var whenReachable: FFCloudSDK.Reachability.NetworkReachable?
+  public var whenUnreachable: FFCloudSDK.Reachability.NetworkUnreachable?
+  public var allowsCellularConnection: Swift.Bool
+  public var notificationCenter: Foundation.NotificationCenter
+  public var connection: FFCloudSDK.Reachability.Connection {
+    get
+  }
+  required public init(reachabilityRef: SystemConfiguration.SCNetworkReachability, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main)
+  convenience public init(hostname: Swift.String, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main) throws
+  convenience public init(queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main) throws
+  @objc deinit
+}
+extension FFCloudSDK.Reachability {
+  public func startNotifier() throws
+  public func stopNotifier()
+  public var description: Swift.String {
+    get
+  }
+}
+public protocol ScreenCaptureOutputPixelBufferDelegate : AnyObject {
+  func didSet(size: CoreFoundation.CGSize)
+  func output(pixelBuffer: CoreVideo.CVPixelBuffer, withPresentationTime: CoreMedia.CMTime)
+}
+public protocol CustomCaptureSession : FFCloudSDK.Running {
+  var attributes: [Foundation.NSString : ObjectiveC.NSObject] { get }
+  var delegate: (any FFCloudSDK.ScreenCaptureOutputPixelBufferDelegate)? { get set }
+}
+@objc open class ScreenCaptureSession : ObjectiveC.NSObject, FFCloudSDK.CustomCaptureSession {
+  public var enabledScale: Swift.Bool
+  public var frameInterval: Swift.Int
+  public var attributes: [Foundation.NSString : ObjectiveC.NSObject] {
+    get
+  }
+  weak public var delegate: (any FFCloudSDK.ScreenCaptureOutputPixelBufferDelegate)?
+  public var isRunning: FFCloudSDK.Atomic<Swift.Bool> {
+    get
+  }
+  public var afterScreenUpdates: Swift.Bool
+  public init(shared: UIKit.UIApplication)
+  public init(viewToCapture: UIKit.UIView)
+  @objc public func onScreen(_ displayLink: QuartzCore.CADisplayLink)
+  open func onScreenProcess(_ displayLink: QuartzCore.CADisplayLink)
+  @objc deinit
+}
+extension FFCloudSDK.ScreenCaptureSession : FFCloudSDK.Running {
+  public func startRunning()
+  public func stopRunning()
+}
+@objc public enum FFMessageType : Swift.Int {
+  case msg
+  case join
+  case leave
+  case admin
+  case stat
+  case whisper
+  case command
   case unknown
-  case cancelled
-  case timedOut
-  case failedToParseUrl
-  case failedToConvertData
-  case invalidState
-  case webRTC
-  case network
-  case duplicateIdentity
-  case serverShutdown
-  case participantRemoved
-  case roomDeleted
-  case stateMismatch
-  case joinFailure
-  case serverPingTimedOut
-  case deviceNotFound
-  case captureFormatNotFound
-  case unableToResolveFPSRange
-  case capturerDimensionsNotResolved
-  case deviceAccessDenied
   public init?(rawValue: Swift.Int)
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
   }
 }
-extension FFCloudSDK.FFCErrorType : Swift.CustomStringConvertible {
+@_hasMissingDesignatedInitializers @objc public class FFStat : ObjectiveC.NSObject {
+  @objc public var participantCount: Swift.Int64
+  @objc public var totalUserCount: Swift.Int64
+  @objc deinit
+}
+extension FFCloudSDK.FFStat {
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+}
+@_hasMissingDesignatedInitializers @objc public class FFMessageMeta : ObjectiveC.NSObject {
+  @objc final public let hidden: Swift.Bool
+  @objc final public let profanity: Swift.Bool
+  @objc deinit
+}
+extension FFCloudSDK.FFMessageMeta {
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+}
+@_hasMissingDesignatedInitializers @objc public class FFMessage : ObjectiveC.NSObject {
+  @objc final public let type: Swift.String
+  @objc final public let id: Swift.String
+  @objc final public let message: Swift.String
+  @objc final public let createAt: Swift.UInt64
+  @objc final public let userID: Swift.String
+  @objc public var userName: Swift.String
+  @objc public var avatarProfileURL: Swift.String?
+  @objc final public let data: Swift.String?
+  @objc public var participantCount: Swift.Int
+  @objc public var totalUserCount: Swift.Int
+  @objc final public let customType: Swift.String?
+  @objc final public let meta: FFCloudSDK.FFMessageMeta?
+  @objc deinit
+}
+extension FFCloudSDK.FFMessage {
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+}
+@_hasMissingDesignatedInitializers @objc public class FFError : ObjectiveC.NSObject, Swift.Error {
+  @objc final public let code: Swift.Int
+  @objc final public let message: Swift.String
+  @objc deinit
+}
+@objc public protocol FFStreamConfig {
+  @objc var width: Swift.Int { get set }
+  @objc var height: Swift.Int { get set }
+  @objc var videoBitrate: Swift.Int { get set }
+  @objc var keyFrameInterval: Swift.Int { get set }
+  @objc var fps: Swift.Int { get set }
+  @objc var sampleRate: Swift.Int { get set }
+  @objc var audioBitrate: Swift.Int { get set }
+  @objc var cameraPos: AVFoundation.AVCaptureDevice.Position { get set }
+}
+public struct FFPlan : Swift.CustomStringConvertible {
+  public let name: Swift.String
+  public let channel_count: Swift.Int
+  public let retention_period: Swift.Int
+  public let vod_count: Swift.Int
+  public let expose_goods_count: Swift.Int
+  public let resolutions: Swift.String?
+  public let support: Swift.Bool
   public var description: Swift.String {
     get
   }
 }
-@_hasMissingDesignatedInitializers public class FFCError {
-  final public let type: FFCloudSDK.FFCErrorType
+public struct FFMyPlan : Swift.CustomStringConvertible {
+  public let member_id: Swift.Int64
+  public let plan: FFCloudSDK.FFPlan
+  public let started_at: Swift.Int64
+  public let ended_at: Swift.Int64?
+  public var description: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objc public class FFVideoEnd : ObjectiveC.NSObject {
+  @objc final public let like_count: Swift.UInt64
+  @objc final public let total_message_count: Swift.UInt64
+  @objc final public let total_watcher_count: Swift.UInt64
+  @objc final public let duration: Swift.UInt64
+  @objc final public let created_at: Swift.UInt64
+  @objc final public let vod_url: Swift.String
   @objc deinit
 }
-@_hasMissingDesignatedInitializers public class FFCLocalParticipant {
+@_hasMissingDesignatedInitializers @objc public class FFStreamEvent : ObjectiveC.NSObject {
+  @objc final public let id: Swift.Int64
+  @objc final public let video_key: Swift.String
+  @objc final public let stream_key: Swift.String
+  @objc final public let state: Swift.String
+  @objc final public let created_at: Swift.UInt64
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class FFMyLives : ObjectiveC.NSObject {
+  @objc final public let video: FFCloudSDK.FFVideoInfo?
+  @objc final public let stream_event: FFCloudSDK.FFStreamEvent?
+  @objc final public let available_live_count: Swift.Int
+  @objc deinit
+}
+extension FFCloudSDK.FFMyLives {
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+}
+@_hasMissingDesignatedInitializers @objc public class FFVideoInfo : ObjectiveC.NSObject {
+  @objc final public let video_key: Swift.String
+  @objc final public let type: Swift.String
+  @objc final public let user_id: Swift.String
+  @objc final public let user_name: Swift.String
+  @objc final public let user_avatar_url: Swift.String
+  @objc final public let title: Swift.String
+  @objc final public let content: Swift.String
+  @objc final public let state: Swift.String
+  @objc final public let duration: Swift.UInt64
+  @objc final public let visibility: Swift.String
+  @objc final public let muted: Swift.Bool
+  @objc final public let locked: Swift.Bool
+  @objc final public let url: Swift.String
+  @objc final public let thumbnail_url: Swift.String
+  @objc final public let stream_key: Swift.String?
+  @objc final public let live_key: Swift.String?
+  @objc final public let data: Swift.String
+  @objc final public let data2: Swift.String
+  @objc final public let watch_count: Swift.UInt64
+  @objc final public let heart_count: Swift.UInt64
+  @objc final public let view_count: Swift.UInt64
+  @objc final public let like_count: Swift.UInt64
+  @objc final public let liked_by_me: Swift.Bool
+  @objc final public let created_at: Swift.UInt64
+  @objc deinit
+}
+extension FFCloudSDK.FFVideoInfo {
+  public func getGoods<T>() -> T? where T : Swift.Decodable
+  @objc dynamic public func getGoods() -> Swift.String
+}
+public protocol FFCursorLoader {
+  associatedtype Response
+  var cursor: Swift.String? { get set }
+  var count: Swift.Int? { get set }
+  func reset()
+  func next(completion: ((Swift.Result<Self.Response, any Swift.Error>) -> Swift.Void)?)
+}
+@_hasMissingDesignatedInitializers @objc public class FFVideoListLoader : ObjectiveC.NSObject, FFCloudSDK.FFCursorLoader {
+  public typealias Response = [FFCloudSDK.FFVideoInfo]
+  public var cursor: Swift.String?
+  public var count: Swift.Int?
+  @objc public func reset()
+  @objc public func next(onSuccess: (([FFCloudSDK.FFVideoInfo]) -> Swift.Void)?, onFailure: ((any Swift.Error) -> Swift.Void)?)
+  public func next(completion: ((Swift.Result<FFCloudSDK.FFVideoListLoader.Response, any Swift.Error>) -> Swift.Void)?)
+  @objc deinit
+}
+public protocol PLAudioMixerDelegate : ObjectiveC.NSObjectProtocol {
+  func mixer(_ mixer: FFCloudSDK.PLAudioMixer, didRender pcmBuffer: AVFAudio.AVAudioPCMBuffer, userInfo: [Swift.String : Any]?)
+}
+@objc public class PLAudioMixer : ObjectiveC.NSObject {
+  public var processingFormat: AVFAudio.AVAudioFormat
+  public var maximumFrameCount: AVFAudio.AVAudioFrameCount
+  weak public var delegate: (any FFCloudSDK.PLAudioMixerDelegate)?
+  public func attach(identifier: Swift.String) -> Swift.Bool
+  public func detach(identifier: Swift.String) -> Swift.Bool
+  @discardableResult
+  public func start() -> Swift.Bool
+  public func stop()
+  public func setVolume(identifier: Swift.String, volume: Swift.Float)
+  public func getVolume(identifier: Swift.String, volume: Swift.Float) -> Swift.Float?
+  public func appendBuffer(identifier: Swift.String, pcmBuffer: AVFAudio.AVAudioPCMBuffer)
+  @discardableResult
+  public func render(sampleCount: AVFAudio.AVAudioFrameCount, userInfo: [Swift.String : Any]? = nil) -> FFCloudSDK.PLAudioMixer.PLAudioMixerRenderStatus
+  required public init?(sampleRate: Swift.Double, channels: Swift.UInt32)
+  required public init?(format: AVFAudio.AVAudioFormat)
+  @objc deinit
+}
+extension FFCloudSDK.PLAudioMixer {
+  public enum PLAudioMixerRenderStatus {
+    case success, insufficientDataFromInputNode, cannotDoInCurrentContext, error
+    public static func == (a: FFCloudSDK.PLAudioMixer.PLAudioMixerRenderStatus, b: FFCloudSDK.PLAudioMixer.PLAudioMixerRenderStatus) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension AVFAudio.AVAudioPCMBuffer {
+  public func toStandardSampleBuffer(duration: CoreMedia.CMTime? = nil, pts: CoreMedia.CMTime? = nil, dts: CoreMedia.CMTime? = nil) -> CoreMedia.CMSampleBuffer?
+}
+extension CoreMedia.CMSampleBuffer {
+  public func toStandardPCMBuffer() -> AVFAudio.AVAudioPCMBuffer?
+}
+@objc @_Concurrency.MainActor(unsafe) open class MTHKView : MetalKit.MTKView {
+  @_Concurrency.MainActor(unsafe) open var isMirrored: Swift.Bool
+  @_Concurrency.MainActor(unsafe) open var videoGravity: AVFoundation.AVLayerVideoGravity
+  @_Concurrency.MainActor(unsafe) open var videoFormatDescription: CoreMedia.CMVideoFormatDescription? {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) @objc dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init(coder aDecoder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func awakeFromNib()
+  @_Concurrency.MainActor(unsafe) open func attachStream(_ stream: FFCloudSDK.NetStream?)
+  @objc deinit
+}
+extension FFCloudSDK.MTHKView : MetalKit.MTKViewDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func mtkView(_ view: MetalKit.MTKView, drawableSizeWillChange size: CoreFoundation.CGSize)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func draw(in view: MetalKit.MTKView)
+}
+public protocol FFLVodPlayerDelegate : AnyObject {
+  func fflVodPlayer(_ vodPlayer: FFCloudSDK.FFLVodPlayer, didUpdate playerState: FFCloudSDK.PlayerState)
+  func fflVodPlayer(_ vodPlayer: FFCloudSDK.FFLVodPlayer, didUpdateProgress seconds: Swift.Float64)
+  func fflVodPlayer(_ vodPlayer: FFCloudSDK.FFLVodPlayer, didReceive message: FFCloudSDK.FFLMessage)
+  func fflVodPlayer(_ vodPlayer: FFCloudSDK.FFLVodPlayer, didFail error: FFCloudSDK.FFError)
+}
+@objc @_hasMissingDesignatedInitializers public class FFLVodPlayer : ObjectiveC.NSObject {
+  weak public var delegate: (any FFCloudSDK.FFLVodPlayerDelegate)?
+  public var duration: Swift.Float64 {
+    get
+  }
+  public func enter()
+  public func prepare(view: UIKit.UIView, uri: Swift.String)
+  public func start()
+  public func pause()
+  public func resume()
+  public func stop()
+  public func exit()
+  public func mute(on: Swift.Bool)
+  public func setFrame(frame: CoreFoundation.CGRect)
+  public func seekTo(sec: Swift.Float64, exactly: Swift.Bool = false, completion: ((Swift.Float64) -> Swift.Void)?)
+  @objc deinit
+}
+extension FFCloudSDK.FFLVodPlayer : FFCloudSDK.HLSPlayerDelegate {
+  public func onProgressUpdated(player: FFCloudSDK.HLSPlayer, seconds: Swift.Float64)
+  public func onPrepared(player: FFCloudSDK.HLSPlayer)
+  public func onPaused(player: FFCloudSDK.HLSPlayer)
+  public func onStarted(player: FFCloudSDK.HLSPlayer)
+  public func onFailedToPlay(player: FFCloudSDK.HLSPlayer)
+  public func onStopped(player: FFCloudSDK.HLSPlayer)
+  public func onCompleted(player: FFCloudSDK.HLSPlayer)
+  public func onError(player: FFCloudSDK.HLSPlayer, error: any Swift.Error)
+  public func onVideoResolutionSize(player: FFCloudSDK.HLSPlayer, size: CoreFoundation.CGSize)
+  public func onBackground(player: FFCloudSDK.HLSPlayer)
+  public func onForeground(player: FFCloudSDK.HLSPlayer)
+}
+public protocol KeyPathRepresentable : Swift.CaseIterable, Swift.Hashable {
+  var keyPath: Swift.AnyKeyPath { get }
+}
+public class Setting<T, Key> : Swift.ExpressibleByDictionaryLiteral where T : AnyObject, Key : FFCloudSDK.KeyPathRepresentable {
+  public typealias Key = Key
+  public typealias Value = Any
+  required public init(dictionaryLiteral elements: (Key, Any)...)
+  public subscript(key: Key) -> Any? {
+    get
+    set
+  }
+  @objc deinit
+}
+extension FFCloudSDK.Setting : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public struct SoundTransform {
+  public static let defaultVolume: Swift.Float
+  public static let defaultPan: Swift.Float
+  public var volume: Swift.Float
+  public var pan: Swift.Float
+}
+extension FFCloudSDK.SoundTransform : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers open class NetSocket : ObjectiveC.NSObject {
+  public static let defaultTimeout: Swift.Int
+  public static let defaultWindowSizeC: Swift.Int
+  open var inputBuffer: Foundation.Data
+  open var timeout: Swift.Int
+  open var connected: Swift.Bool
+  open var windowSizeC: Swift.Int
+  open var totalBytesIn: FFCloudSDK.Atomic<Swift.Int64>
+  open var qualityOfService: Dispatch.DispatchQoS
+  open var securityLevel: Foundation.StreamSocketSecurityLevel
+  open var totalBytesOut: FFCloudSDK.Atomic<Swift.Int64> {
+    get
+  }
+  open var queueBytesOut: FFCloudSDK.Atomic<Swift.Int64> {
+    get
+  }
+  @objc deinit
+  public func connect(withName: Swift.String, port: Swift.Int)
+  @discardableResult
+  public func doOutput(data: Foundation.Data, locked: Swift.UnsafeMutablePointer<Swift.UInt32>? = nil) -> Swift.Int
+  open func close()
+  open func listen()
+  @objc override dynamic public init()
+}
+extension FFCloudSDK.NetSocket : Foundation.StreamDelegate {
+  @objc dynamic public func stream(_ aStream: Foundation.Stream, handle eventCode: Foundation.Stream.Event)
+}
+@_hasMissingDesignatedInitializers public class FFLChannel {
+  public func sendMessage(message: Swift.String, onFailure: ((Swift.Int, Swift.String) -> Swift.Void)? = nil)
+  @objc deinit
+}
+public enum FFLite {
+  public struct User {
+    public init(userId: Swift.String, username: Swift.String, profileImgUrl: Swift.String? = nil)
+  }
+}
+public protocol VideoEncoderDelegate : AnyObject {
+  func didSetFormatDescription(video formatDescription: CoreMedia.CMFormatDescription?)
+  func sampleOutput(video sampleBuffer: CoreMedia.CMSampleBuffer)
+}
+@_hasMissingDesignatedInitializers final public class H264Encoder {
+  public enum Option : Swift.String, FFCloudSDK.KeyPathRepresentable, Swift.CaseIterable {
+    case muted
+    case width
+    case height
+    case bitrate
+    case profileLevel
+    case maxKeyFrameIntervalDuration
+    case scalingMode
+    case H264EntropyMode
+    public var keyPath: Swift.AnyKeyPath {
+      get
+    }
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [FFCloudSDK.H264Encoder.Option]
+    public typealias RawValue = Swift.String
+    public static var allCases: [FFCloudSDK.H264Encoder.Option] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public static let defaultWidth: Swift.Int32
+  public static let defaultHeight: Swift.Int32
+  public static let defaultBitrate: Swift.UInt32
+  public static let defaultScalingMode: FFCloudSDK.ScalingMode
+  final public var settings: FFCloudSDK.Setting<FFCloudSDK.H264Encoder, FFCloudSDK.H264Encoder.Option> {
+    get
+    set
+  }
+  final public var isRunning: FFCloudSDK.Atomic<Swift.Bool> {
+    get
+  }
+  @objc deinit
+}
+extension FFCloudSDK.H264Encoder : FFCloudSDK.Running {
+  final public func startRunning()
+  final public func stopRunning()
+}
+extension FFCloudSDK.DeviceUtil {
+  public static func videoOrientation(by notification: Foundation.Notification) -> AVFoundation.AVCaptureVideoOrientation?
+  public static func videoOrientation(by orientation: UIKit.UIDeviceOrientation) -> AVFoundation.AVCaptureVideoOrientation?
+  public static func videoOrientation(by orientation: UIKit.UIInterfaceOrientation) -> AVFoundation.AVCaptureVideoOrientation?
+}
+@objc @_inheritsConvenienceInitializers open class NetStream : ObjectiveC.NSObject {
+  final public let lockQueue: Dispatch.DispatchQueue
+  open var mixer: FFCloudSDK.AVMixer {
+    get
+  }
+  open var metadata: [Swift.String : Any?]
+  open var context: CoreImage.CIContext? {
+    get
+    set
+  }
+  open var torch: Swift.Bool {
+    get
+    set
+  }
+  open var audioSettings: FFCloudSDK.Setting<FFCloudSDK.AudioCodec, FFCloudSDK.AudioCodec.Option> {
+    get
+    set
+  }
+  open var videoSettings: FFCloudSDK.Setting<FFCloudSDK.H264Encoder, FFCloudSDK.H264Encoder.Option> {
+    get
+    set
+  }
+  open var captureSettings: FFCloudSDK.Setting<FFCloudSDK.AVMixer, FFCloudSDK.AVMixer.Option> {
+    get
+    set
+  }
+  open var recorderSettings: [AVFoundation.AVMediaType : [Swift.String : Any]] {
+    get
+    set
+  }
+  @objc deinit
+  open func attachCamera(_ camera: AVFoundation.AVCaptureDevice?, onError: ((_ error: Foundation.NSError) -> Swift.Void)? = nil)
+  open func attachAudio(_ audio: AVFoundation.AVCaptureDevice?, automaticallyConfiguresApplicationAudioSession: Swift.Bool = false, onError: ((_ error: Foundation.NSError) -> Swift.Void)? = nil)
+  open func setPointOfInterest(focus: CoreFoundation.CGPoint)
+  open func setPointOfInterest(exposure: CoreFoundation.CGPoint)
+  open func setExposureTargetBias(bias: Swift.Float)
+  open func appendSampleBuffer(_ sampleBuffer: CoreMedia.CMSampleBuffer, withType: AVFoundation.AVMediaType, options: [ObjectiveC.NSObject : Swift.AnyObject]? = nil)
+  open func registerVideoEffect(_ effect: FFCloudSDK.VideoEffect) -> Swift.Bool
+  open func unregisterVideoEffect(_ effect: FFCloudSDK.VideoEffect) -> Swift.Bool
+  open func registerAudioEffect(_ effect: FFCloudSDK.AudioEffect) -> Swift.Bool
+  open func unregisterAudioEffect(_ effect: FFCloudSDK.AudioEffect) -> Swift.Bool
+  open func dispose()
+  @objc override dynamic public init()
+}
+public protocol AVRecorderDelegate : AnyObject {
+  var moviesDirectory: Foundation.URL { get }
+  func rotateFile(_ recorder: FFCloudSDK.AVRecorder, withPresentationTimeStamp: CoreMedia.CMTime, mediaType: AVFoundation.AVMediaType)
+  func getPixelBufferAdaptor(_ recorder: FFCloudSDK.AVRecorder, withWriterInput: AVFoundation.AVAssetWriterInput?) -> AVFoundation.AVAssetWriterInputPixelBufferAdaptor?
+  func getWriterInput(_ recorder: FFCloudSDK.AVRecorder, mediaType: AVFoundation.AVMediaType, sourceFormatHint: CoreMedia.CMFormatDescription?) -> AVFoundation.AVAssetWriterInput?
+  func didStartRunning(_ recorder: FFCloudSDK.AVRecorder)
+  func didStopRunning(_ recorder: FFCloudSDK.AVRecorder)
+  func didFinishWriting(_ recorder: FFCloudSDK.AVRecorder)
+}
+@objc @_inheritsConvenienceInitializers open class AVRecorder : ObjectiveC.NSObject {
+  public static let defaultOutputSettings: [AVFoundation.AVMediaType : [Swift.String : Any]]
+  open var writer: AVFoundation.AVAssetWriter?
+  open var fileName: Swift.String?
+  weak open var delegate: (any FFCloudSDK.AVRecorderDelegate)?
+  open var writerInputs: [AVFoundation.AVMediaType : AVFoundation.AVAssetWriterInput]
+  open var outputSettings: [AVFoundation.AVMediaType : [Swift.String : Any]]
+  open var pixelBufferAdaptor: AVFoundation.AVAssetWriterInputPixelBufferAdaptor?
+  final public let lockQueue: Dispatch.DispatchQueue
+  public var isRunning: FFCloudSDK.Atomic<Swift.Bool> {
+    get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension FFCloudSDK.AVRecorder : FFCloudSDK.Running {
+  public func startRunning()
+  public func stopRunning()
+}
+@objc open class DefaultAVRecorderDelegate : ObjectiveC.NSObject {
+  public enum FileType {
+    case mp4
+    case mov
+    public var AVFileType: AVFoundation.AVFileType {
+      get
+    }
+    public var fileExtension: Swift.String {
+      get
+    }
+    public static func == (a: FFCloudSDK.DefaultAVRecorderDelegate.FileType, b: FFCloudSDK.DefaultAVRecorderDelegate.FileType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static let shared: FFCloudSDK.DefaultAVRecorderDelegate
+  open var duration: Swift.Int64
+  open var dateFormat: Swift.String
+  public var fileType: FFCloudSDK.DefaultAVRecorderDelegate.FileType {
+    get
+  }
+  open var moviesDirectory: Foundation.URL {
+    get
+    set
+  }
+  public init(fileType: FFCloudSDK.DefaultAVRecorderDelegate.FileType = .mp4)
+  @objc deinit
+}
+@objc extension FFCloudSDK.DefaultAVRecorderDelegate : FFCloudSDK.AVRecorderDelegate {
+  @objc dynamic open func rotateFile(_ recorder: FFCloudSDK.AVRecorder, withPresentationTimeStamp: CoreMedia.CMTime, mediaType: AVFoundation.AVMediaType)
+  @objc dynamic open func getPixelBufferAdaptor(_ recorder: FFCloudSDK.AVRecorder, withWriterInput: AVFoundation.AVAssetWriterInput?) -> AVFoundation.AVAssetWriterInputPixelBufferAdaptor?
+  @objc dynamic open func getWriterInput(_ recorder: FFCloudSDK.AVRecorder, mediaType: AVFoundation.AVMediaType, sourceFormatHint: CoreMedia.CMFormatDescription?) -> AVFoundation.AVAssetWriterInput?
+  @objc dynamic open func didFinishWriting(_ recorder: FFCloudSDK.AVRecorder)
+  @objc dynamic open func didStartRunning(_ recorder: FFCloudSDK.AVRecorder)
+  @objc dynamic open func didStopRunning(_ recorder: FFCloudSDK.AVRecorder)
+}
+extension UIKit.UIImage {
+  public func rounded(radius: CoreFoundation.CGFloat) -> UIKit.UIImage
+  public func roundedImageWithBorder(cornerRadius: CoreFoundation.CGFloat, width: CoreFoundation.CGFloat, color: UIKit.UIColor) -> UIKit.UIImage?
+  public func alpha(_ value: CoreFoundation.CGFloat) -> UIKit.UIImage
+  public func scalePreservingAspectRatio(targetSize: CoreFoundation.CGSize, scale: CoreFoundation.CGFloat) -> UIKit.UIImage
+}
+public enum FLVVideoCodec : Swift.UInt8 {
+  case sorensonH263
+  case screen1
+  case on2VP6
+  case on2VP6Alpha
+  case screen2
+  case avc
+  case unknown
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
+}
+public enum HKPictureInPicureControllerPosition {
+  case topLeft
+  case topRight
+  case bottomRight
+  case bottomLeft
+  public static func == (a: FFCloudSDK.HKPictureInPicureControllerPosition, b: FFCloudSDK.HKPictureInPicureControllerPosition) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objc public class FFVideoList : ObjectiveC.NSObject {
+  @objc final public let content: [FFCloudSDK.FFVideoInfo]
+  @objc final public let size: Swift.UInt64
+  @objc final public let number: Swift.UInt64
+  @objc final public let totalPages: Swift.UInt64
+  @objc final public let totalElements: Swift.UInt64
+  @objc deinit
+}
+public enum ScalingMode : Swift.String {
+  case normal
+  case letterbox
+  case cropSourceToCleanAperture
+  case trim
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension FFCloudSDK.HKPictureInPicureController where Self : UIKit.UIViewController {
+  public var isPictureInPictureActive: Swift.Bool {
+    get
+  }
+  public var pictureInPictureSize: CoreFoundation.CGSize {
+    get
+    set
+  }
+  public var pictureInPicturePosition: FFCloudSDK.HKPictureInPicureControllerPosition {
+    get
+    set
+  }
+  public var pictureInPictureMargin: CoreFoundation.CGFloat {
+    get
+    set
+  }
+  public var pictureInPictureCornerRadius: CoreFoundation.CGFloat {
+    get
+    set
+  }
+  public var pictureInPictureAnimationDuration: Foundation.TimeInterval {
+    get
+    set
+  }
+  public func startPictureInPicture()
+  public func stopPictureInPicture()
+}
+public struct Empty : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension UIKit.UIDevice {
+  @_Concurrency.MainActor(unsafe) public var type: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class MP4Sampler {
+  public typealias Handler = () -> Swift.Void
+  public var isRunning: FFCloudSDK.Atomic<Swift.Bool> {
+    get
+  }
+  @objc deinit
+}
+extension FFCloudSDK.MP4Sampler : FFCloudSDK.Running {
+  public func startRunning()
+  public func stopRunning()
+}
+public class AVMixer {
+  public static let bufferEmpty: Foundation.Notification.Name
+  public static let defaultFPS: Swift.Double
+  public static let defaultVideoSettings: [Foundation.NSString : Swift.AnyObject]
+  public enum Option : Swift.String, FFCloudSDK.KeyPathRepresentable, Swift.CaseIterable {
+    case fps
+    case sessionPreset
+    case isVideoMirrored
+    case continuousAutofocus
+    case continuousExposure
+    case preferredVideoStabilizationMode
+    public var keyPath: Swift.AnyKeyPath {
+      get
+    }
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [FFCloudSDK.AVMixer.Option]
+    public typealias RawValue = Swift.String
+    public static var allCases: [FFCloudSDK.AVMixer.Option] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var session: AVFoundation.AVCaptureSession {
+    get
+    set
+  }
+  public var recorder: FFCloudSDK.AVRecorder! {
+    get
+  }
+  @objc deinit
+  public init()
+  public func dispose()
+}
+extension FFCloudSDK.AVMixer {
+  public func startEncoding(delegate: Any)
+  public func stopEncoding()
+}
+extension FFCloudSDK.AVMixer : FFCloudSDK.Running {
+  public var isRunning: FFCloudSDK.Atomic<Swift.Bool> {
+    get
+  }
+  public func startRunning()
+  public func stopRunning()
+}
+@objc open class NetService : ObjectiveC.NSObject {
+  open var txtData: Foundation.Data? {
+    get
+  }
+  public var domain: Swift.String {
+    get
+  }
+  public var name: Swift.String {
+    get
+  }
+  public var port: Swift.Int32 {
+    get
+  }
+  public var type: Swift.String {
+    get
+  }
+  public var isRunning: FFCloudSDK.Atomic<Swift.Bool> {
+    get
+  }
+  public var clients: [FFCloudSDK.NetClient] {
+    get
+  }
+  public init(domain: Swift.String, type: Swift.String, name: Swift.String, port: Swift.Int32)
+  @objc deinit
+}
+extension FFCloudSDK.NetService : Foundation.NetServiceDelegate {
+  @objc dynamic public func netService(_ sender: Foundation.NetService, didAcceptConnectionWith inputStream: Foundation.InputStream, outputStream: Foundation.OutputStream)
+}
+extension FFCloudSDK.NetService : FFCloudSDK.Running {
+  public func startRunning()
+  public func stopRunning()
+}
+@_hasMissingDesignatedInitializers open class ByteArray {
+  public enum Error : Swift.Error {
+    case eof
+    case parse
+    public static func == (a: FFCloudSDK.ByteArray.Error, b: FFCloudSDK.ByteArray.Error) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  open var length: Swift.Int {
+    get
+    set
+  }
+  open var position: Swift.Int
+  open var bytesAvailable: Swift.Int {
+    get
+  }
+  open subscript(i: Swift.Int) -> Swift.UInt8 {
+    get
+    set
+  }
+  open func readUInt8() throws -> Swift.UInt8
+  @discardableResult
+  open func writeUInt8(_ value: Swift.UInt8) -> Self
+  open func readInt8() throws -> Swift.Int8
+  @discardableResult
+  open func writeInt8(_ value: Swift.Int8) -> Self
+  open func readUInt16() throws -> Swift.UInt16
+  @discardableResult
+  open func writeUInt16(_ value: Swift.UInt16) -> Self
+  open func readInt16() throws -> Swift.Int16
+  @discardableResult
+  open func writeInt16(_ value: Swift.Int16) -> Self
+  open func readUInt24() throws -> Swift.UInt32
+  @discardableResult
+  open func writeUInt24(_ value: Swift.UInt32) -> Self
+  open func readUInt32() throws -> Swift.UInt32
+  @discardableResult
+  open func writeUInt32(_ value: Swift.UInt32) -> Self
+  open func readInt32() throws -> Swift.Int32
+  @discardableResult
+  open func writeInt32(_ value: Swift.Int32) -> Self
+  open func readDouble() throws -> Swift.Double
+  @discardableResult
+  open func writeDouble(_ value: Swift.Double) -> Self
+  open func readFloat() throws -> Swift.Float
+  @discardableResult
+  open func writeFloat(_ value: Swift.Float) -> Self
+  open func readUTF8() throws -> Swift.String
+  @discardableResult
+  open func writeUTF8(_ value: Swift.String) throws -> Self
+  open func readUTF8Bytes(_ length: Swift.Int) throws -> Swift.String
+  @discardableResult
+  open func writeUTF8Bytes(_ value: Swift.String) -> Self
+  open func readBytes(_ length: Swift.Int) throws -> Foundation.Data
+  @discardableResult
+  open func writeBytes(_ value: Foundation.Data) -> Self
+  @discardableResult
+  open func clear() -> Self
+  @objc deinit
+}
+extension FFCloudSDK.ByteArray : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public protocol HKPictureInPicureController : AnyObject {
+  var isPictureInPictureActive: Swift.Bool { get }
+  var pictureInPictureSize: CoreFoundation.CGSize { get set }
+  var pictureInPicturePosition: FFCloudSDK.HKPictureInPicureControllerPosition { get set }
+  var pictureInPictureMargin: CoreFoundation.CGFloat { get set }
+  var pictureInPictureCornerRadius: CoreFoundation.CGFloat { get set }
+  var pictureInPictureAnimationDuration: Foundation.TimeInterval { get set }
+  func startPictureInPicture()
+  func stopPictureInPicture()
+}
+public enum FLVAudioCodec : Swift.UInt8 {
+  case pcm
+  case adpcm
+  case mp3
+  case pcmle
+  case nellymoser16K
+  case nellymoser8K
+  case nellymoser
+  case g711A
+  case g711MU
+  case aac
+  case speex
+  case mp3_8k
+  case unknown
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers open class VideoEffect : ObjectiveC.NSObject {
+  open var ciContext: CoreImage.CIContext? {
+    get
+  }
+  open func execute(_ image: CoreImage.CIImage) -> CoreImage.CIImage
+  open func execute(_ image: CoreImage.CIImage, cvPixelBuffer buffer: CoreVideo.CVPixelBuffer?) -> CoreImage.CIImage
+  @objc override dynamic public init()
+  @objc deinit
+}
+public protocol TimerDriverDelegate : AnyObject {
+  func tick(_ driver: FFCloudSDK.TimerDriver)
+}
+@_hasMissingDesignatedInitializers public class TimerDriver {
+  public var interval: Swift.UInt64
+  public func setDelegate(_ delegate: any FFCloudSDK.TimerDriverDelegate, withQueue: Dispatch.DispatchQueue? = nil)
+  @objc deinit
+}
+extension FFCloudSDK.TimerDriver : FFCloudSDK.Running {
+  public var isRunning: FFCloudSDK.Atomic<Swift.Bool> {
+    get
+  }
+  public func startRunning()
+  public func stopRunning()
+}
+extension FFCloudSDK.NetStream {
+  open var orientation: AVFoundation.AVCaptureVideoOrientation {
+    get
+    set
+  }
+  open func attachScreen(_ screen: (any FFCloudSDK.CustomCaptureSession)?, useScreenSize: Swift.Bool = true)
+  open var zoomFactor: CoreFoundation.CGFloat {
+    get
+  }
+  open func setZoomFactor(_ zoomFactor: CoreFoundation.CGFloat, ramping: Swift.Bool = false, withRate: Swift.Float = 2.0)
+}
+@objc @_inheritsConvenienceInitializers open class AudioEffect : ObjectiveC.NSObject {
+  open func execute(_ buffer: CoreAudio.UnsafeMutableAudioBufferListPointer?, format: CoreAudioTypes.AudioStreamBasicDescription?)
+  @objc override dynamic public init()
   @objc deinit
 }
 public typealias HttpCompletion = ((Swift.Int, Foundation.Data?, (any Swift.Error)?) -> Swift.Void)?
-@_hasMissingDesignatedInitializers public class FFCTrack {
-  public var track: LiveKitClient.Track?
-  public func isVideoTrack() -> Swift.Bool
+public enum FLVSoundSize : Swift.UInt8 {
+  case snd8bit
+  case snd16bit
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
+}
+@objc @_Concurrency.MainActor(unsafe) open class GLHKView : GLKit.GLKView {
+  @_Concurrency.MainActor(unsafe) public static var defaultBackgroundColor: UIKit.UIColor
+  @_Concurrency.MainActor(unsafe) open var isMirrored: Swift.Bool
+  @_Concurrency.MainActor(unsafe) open var videoGravity: AVFoundation.AVLayerVideoGravity
+  @_Concurrency.MainActor(unsafe) open var videoFormatDescription: CoreMedia.CMVideoFormatDescription? {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func awakeFromNib()
+  @_Concurrency.MainActor(unsafe) open func attachStream(_ stream: FFCloudSDK.NetStream?)
   @objc deinit
 }
-public struct FFCFail : Swift.Decodable {
-  public init(from decoder: any Swift.Decoder) throws
+extension FFCloudSDK.GLHKView : GLKit.GLKViewDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func glkView(_ view: GLKit.GLKView, drawIn rect: CoreFoundation.CGRect)
 }
-public struct VideoRoomInfo : Swift.Decodable {
-  public let id: Swift.UInt64
-  public let uuid: Swift.String
-  public let type: Swift.String?
-  public let videoRoomState: Swift.String?
-  public let accessLevel: Swift.String?
-  public let app: FFCloudSDK.AppInfo
-  public let member: FFCloudSDK.MemberInfo
-  public let title: Swift.String?
-  public let description: Swift.String?
-  public let customType: Swift.String?
-  public let customData: [Swift.String : Swift.String]?
-  public let createdAt: Swift.String
-  public let lastModifiedAt: Swift.String
-  public init(from decoder: any Swift.Decoder) throws
+public enum FLVSoundType : Swift.UInt8 {
+  case mono
+  case stereo
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
 }
-public struct VideoRoomInfoList : Swift.Decodable {
-  public let content: [FFCloudSDK.VideoRoomInfo]
-  public let first: Swift.Bool
-  public let last: Swift.Bool
-  public let empty: Swift.Bool
-  public let totalPages: Swift.UInt64
-  public let totalElements: Swift.UInt64
-  public let numberOfElements: Swift.UInt64
-  public let size: Swift.UInt64
-  public init(from decoder: any Swift.Decoder) throws
+extension FFCloudSDK.AudioCodec {
+  public enum Destination {
+    case aac
+    case pcm
+    public static func == (a: FFCloudSDK.AudioCodec.Destination, b: FFCloudSDK.AudioCodec.Destination) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
 }
-public struct WebRtcVideoTokenInfo : Swift.Decodable {
-  public let webRtcServerUrl: Swift.String
-  public let webRtcToken: Swift.String
-  public init(from decoder: any Swift.Decoder) throws
+@objc public enum Preset : Swift.Int {
+  case hd1920x1080
+  case hd1280x720
+  case vga640x480
+  case cif352x288
+  public var value: AVFoundation.AVCaptureSession.Preset {
+    get
+  }
+  public var resolution: (width: Swift.Int, height: Swift.Int) {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
 }
-public struct AppInfo : Swift.Decodable {
-  public let id: Swift.UInt64
-  public let name: Swift.String
-  public init(from decoder: any Swift.Decoder) throws
+@objc @_inheritsConvenienceInitializers open class KSPlayerOptions : ObjectiveC.NSObject {
+  public var lowLatency: Swift.Bool
+  @objc override dynamic public init()
+  @objc deinit
 }
-public struct MemberInfo : Swift.Decodable {
-  public let id: Swift.UInt64
-  public let appUserId: Swift.String
-  public let appUserName: Swift.String?
-  public let appUserProfileImgUrl: Swift.String?
-  public let customType: Swift.String
-  public init(from decoder: any Swift.Decoder) throws
+@objc open class KSPlayer : ObjectiveC.NSObject {
+  open var isMuted: Swift.Bool {
+    get
+    set
+  }
+  public init(url: Foundation.URL, view: UIKit.UIView, delegate: any FFCloudSDK.RTMPPlayerDelegate, options: FFCloudSDK.KSPlayerOptions = KSPlayerOptions())
+  public func removeFromView()
+  public func pause()
+  @objc deinit
 }
-extension FFCloudSDK.FFCErrorType : Swift.Equatable {}
-extension FFCloudSDK.FFCErrorType : Swift.Hashable {}
-extension FFCloudSDK.FFCErrorType : Swift.RawRepresentable {}
+extension FFCloudSDK.KSPlayer : FFCloudSDK.RTMPPlayer {
+  public func start()
+  public func stop()
+  public func updatePlayerItem(url: Foundation.URL)
+}
+extension FFCloudSDK.KSPlayer : KSPlayer_mysangle.PlayerControllerDelegate {
+  public func playerController(state: KSPlayer_mysangle.KSPlayerState)
+  public func playerController(currentTime: Foundation.TimeInterval, totalTime: Foundation.TimeInterval)
+  public func playerController(finish: (any Swift.Error)?)
+  public func playerController(maskShow _: Swift.Bool)
+  public func playerController(action _: KSPlayer_mysangle.PlayerButtonType)
+  public func playerController(bufferedCount count: Swift.Int, consumeTime time: Foundation.TimeInterval)
+}
+public enum FLVSoundRate : Swift.UInt8 {
+  case kHz5_5
+  case kHz11
+  case kHz22
+  case kHz44
+  public var floatValue: Swift.Float64 {
+    get
+  }
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
+}
+@objc open class RTMPStream : FFCloudSDK.NetStream {
+  public enum Code : Swift.String {
+    case bufferEmpty
+    case bufferFlush
+    case bufferFull
+    case connectClosed
+    case connectFailed
+    case connectRejected
+    case connectSuccess
+    case drmUpdateNeeded
+    case failed
+    case multicastStreamReset
+    case pauseNotify
+    case playFailed
+    case playFileStructureInvalid
+    case playInsufficientBW
+    case playNoSupportedTrackFound
+    case playReset
+    case playStart
+    case playStop
+    case playStreamNotFound
+    case playTransition
+    case playUnpublishNotify
+    case publishBadName
+    case publishIdle
+    case publishStart
+    case recordAlreadyExists
+    case recordFailed
+    case recordNoAccess
+    case recordStart
+    case recordStop
+    case recordDiskQuotaExceeded
+    case secondScreenStart
+    case secondScreenStop
+    case seekFailed
+    case seekInvalidTime
+    case seekNotify
+    case stepNotify
+    case unpauseNotify
+    case unpublishSuccess
+    case videoDimensionChange
+    public var level: Swift.String {
+      get
+    }
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum PlayTransition : Swift.String {
+    case append
+    case appendAndWait
+    case reset
+    case resume
+    case stop
+    case swap
+    case `switch`
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public struct PlayOption : Swift.CustomDebugStringConvertible {
+    public var len: Swift.Double
+    public var offset: Swift.Double
+    public var oldStreamName: Swift.String
+    public var start: Swift.Double
+    public var streamName: Swift.String
+    public var transition: FFCloudSDK.RTMPStream.PlayTransition
+    public var debugDescription: Swift.String {
+      get
+    }
+  }
+  public enum HowToPublish : Swift.String {
+    case record
+    case append
+    case appendWithGap
+    case live
+    case localRecord
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public static let defaultAudioBitrate: Swift.UInt32
+  public static let defaultVideoBitrate: Swift.UInt32
+  open var info: FFCloudSDK.RTMPStreamInfo {
+    get
+  }
+  open var objectEncoding: FFCloudSDK.RTMPObjectEncoding {
+    get
+  }
+  @objc dynamic open var currentFPS: Swift.UInt16 {
+    get
+  }
+  open var soundTransform: FFCloudSDK.SoundTransform {
+    get
+    set
+  }
+  open var receiveAudio: Swift.Bool {
+    get
+    set
+  }
+  open var receiveVideo: Swift.Bool {
+    get
+    set
+  }
+  open var paused: Swift.Bool {
+    get
+    set
+  }
+  public init(connection: FFCloudSDK.RTMPConnection)
+  @objc deinit
+  open func play(_ arguments: Any?...)
+  open func seek(_ offset: Swift.Double)
+  open func publish(_ name: Swift.String?, type: FFCloudSDK.RTMPStream.HowToPublish = .live)
+  open func close()
+  open func send(handlerName: Swift.String, arguments: Any?...)
+  open func appendFile(_ file: Foundation.URL, completionHandler: FFCloudSDK.MP4Sampler.Handler? = nil)
+  open func createMetaData() -> FFCloudSDK.ASObject
+}
+public struct FFLErrorCode {
+  public static let MEDIA_CONNECTION_FAILED: Swift.Int
+  public static let MEDIA_STREAMING_STOPPED: Swift.Int
+  public static let MEDIA_STREAMING_FAILED: Swift.Int
+  public static let MEDIA_STREAMING_INVALID_VIEW: Swift.Int
+  public static let MEDIA_HLS_PLAYER_PLAY_FAILED: Swift.Int
+  public static let MEDIA_AV_AUDIO_SESSION_ERROR: Swift.Int
+  public static let MEDIA_TOO_MANY_RETRIES: Swift.Int
+  public static let MEDIA_ERROR: Swift.Int
+  public static let CHANNEL_UNEXPECTED_ERROR: Swift.Int
+  public static let CHANNEL_INVALID_MESSAGE: Swift.Int
+  public static let CHANNEL_MESSAGE_SEND_ERROR: Swift.Int
+  public static let CHANNEL_UNAUTHORIZED_ERROR: Swift.Int
+  public static let STREAMER_NOT_PREPARED: Swift.Int
+  public static let STREAMER_NO_SERVER_ADDRESS: Swift.Int
+  public static let STREAMER_NO_STREAM_KEY: Swift.Int
+  public static let SERVER_ERROR: Swift.Int
+  public static let SERVER_UNEXPECTED_ERROR: Swift.Int
+  public static let SERVER_INVALID_VIDEO_ROOM_ID: Swift.Int
+  public static let SERVER_STREAM_KEY_GET_ERROR: Swift.Int
+  public static let SERVER_VIDEO_ROOM_CREATE_ERROR: Swift.Int
+  public static let SERVER_VIDEO_ROOM_GET_ERROR: Swift.Int
+  public static let SERVER_VIDEO_ROOM_JOIN_ERROR: Swift.Int
+  public static let SERVER_VIDEO_ROOM_START_ERROR: Swift.Int
+  public static let SERVER_VIDEO_ROOM_LEAVE_ERROR: Swift.Int
+  public static let SERVER_VIDEO_ROOM_END_ERROR: Swift.Int
+  public static let SERVER_MESSAGES_GET_ERROR: Swift.Int
+  public static let RTMP_PLAYER_ERROR: Swift.Int
+  public static let RTMP_PLAYER_TOO_LONG_BUFFERING_ERROR: Swift.Int
+}
+public enum ServerConfig {
+  case dev
+  case prod
+  public static func == (a: FFCloudSDK.ServerConfig, b: FFCloudSDK.ServerConfig) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct FFLConfig {
+  public init(serverConfig: FFCloudSDK.ServerConfig)
+  public init(serverAddr: Swift.String)
+}
+@objc @_inheritsConvenienceInitializers public class FlipFlopLite : ObjectiveC.NSObject {
+  public static var loggingLevel: Logboard.LBLogger.Level {
+    get
+    set
+  }
+  public static func initialize(config: FFCloudSDK.FFLConfig)
+  public static func getStreamer(accessToken: Swift.String) -> FFCloudSDK.FFLStreamer
+  public static func getFFCStreamer(accessToken: Swift.String) -> FFCloudSDK.FFCStreamer
+  public static func getLivePlayer(accessToken: Swift.String, videoRoomId: Swift.UInt64, channelId: Swift.UInt64) -> FFCloudSDK.FFLLivePlayer
+  public static func getVodPlayer(accessToken: Swift.String, channelId: Swift.UInt64, liveStartedAt: Swift.String) -> FFCloudSDK.FFLVodPlayer
+  public static func getRoom(accessToken: Swift.String) -> FFCloudSDK.FFLRoom
+  @objc override dynamic public init()
+  @objc deinit
+}
+public struct RTMPStreamInfo {
+  public var byteCount: FFCloudSDK.Atomic<Swift.Int64> {
+    get
+  }
+  public var resourceName: Swift.String? {
+    get
+  }
+  public var currentBytesPerSecond: Swift.Int32 {
+    get
+  }
+}
+extension FFCloudSDK.RTMPStreamInfo : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public enum EventPhase : Swift.UInt8 {
+  case capturing
+  case atTarget
+  case bubbling
+  case dispose
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
+}
+open class Event {
+  public struct Name : Swift.RawRepresentable, Swift.ExpressibleByStringLiteral {
+    public typealias RawValue = Swift.String
+    public typealias StringLiteralType = Swift.String
+    public static let sync: FFCloudSDK.Event.Name
+    public static let event: FFCloudSDK.Event.Name
+    public static let ioError: FFCloudSDK.Event.Name
+    public static let rtmpStatus: FFCloudSDK.Event.Name
+    public let rawValue: Swift.String
+    public init(rawValue: Swift.String)
+    public init(stringLiteral value: Swift.String)
+    public typealias ExtendedGraphemeClusterLiteralType = FFCloudSDK.Event.Name.StringLiteralType
+    public typealias UnicodeScalarLiteralType = FFCloudSDK.Event.Name.StringLiteralType
+  }
+  public static func from(_ notification: Foundation.Notification) -> FFCloudSDK.Event
+  open var type: FFCloudSDK.Event.Name {
+    get
+  }
+  open var bubbles: Swift.Bool {
+    get
+  }
+  open var data: Any? {
+    get
+  }
+  open var target: Swift.AnyObject? {
+    get
+  }
+  public init(type: FFCloudSDK.Event.Name, bubbles: Swift.Bool = false, data: Any? = nil)
+  @objc deinit
+}
+extension FFCloudSDK.Event : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+open class EventDispatcher {
+  public init()
+  public init(target: Swift.AnyObject)
+  @objc deinit
+  public func addEventListener(_ type: FFCloudSDK.Event.Name, selector: ObjectiveC.Selector, observer: Swift.AnyObject? = nil, useCapture: Swift.Bool = false)
+  public func removeEventListener(_ type: FFCloudSDK.Event.Name, selector: ObjectiveC.Selector, observer: Swift.AnyObject? = nil, useCapture: Swift.Bool = false)
+  open func dispatch(event: FFCloudSDK.Event)
+  public func dispatch(_ type: FFCloudSDK.Event.Name, bubbles: Swift.Bool, data: Any?)
+}
+public protocol AudioCodecDelegate : AnyObject {
+  func didSetFormatDescription(audio formatDescription: CoreMedia.CMFormatDescription?)
+  func sampleOutput(audio data: CoreAudio.UnsafeMutableAudioBufferListPointer, presentationTimeStamp: CoreMedia.CMTime)
+}
+public class AudioCodec {
+  public enum Option : Swift.String, FFCloudSDK.KeyPathRepresentable {
+    case muted
+    case bitrate
+    case sampleRate
+    case actualBitrate
+    public var keyPath: Swift.AnyKeyPath {
+      get
+    }
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [FFCloudSDK.AudioCodec.Option]
+    public typealias RawValue = Swift.String
+    public static var allCases: [FFCloudSDK.AudioCodec.Option] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public static let minimumBitrate: Swift.UInt32
+  public static let defaultBitrate: Swift.UInt32
+  public static let defaultChannels: Swift.UInt32
+  public static let defaultSampleRate: Swift.Double
+  public static let defaultMaximumBuffers: Swift.Int
+  public var destination: FFCloudSDK.AudioCodec.Destination
+  weak public var delegate: (any FFCloudSDK.AudioCodecDelegate)?
+  public var isRunning: FFCloudSDK.Atomic<Swift.Bool> {
+    get
+  }
+  public var settings: FFCloudSDK.Setting<FFCloudSDK.AudioCodec, FFCloudSDK.AudioCodec.Option> {
+    get
+    set
+  }
+  public init()
+  public func encodeBytes(_ bytes: Swift.UnsafeMutableRawPointer?, count: Swift.Int, presentationTimeStamp: CoreMedia.CMTime)
+  public func encodeSampleBuffer(_ sampleBuffer: CoreMedia.CMSampleBuffer, offset: Swift.Int = 0)
+  @objc deinit
+}
+extension FFCloudSDK.AudioCodec : FFCloudSDK.Running {
+  public func startRunning()
+  public func stopRunning()
+}
+open class FLVReader {
+  public static let header: Foundation.Data
+  final public let url: Foundation.URL
+  public init(url: Foundation.URL)
+  public func getData(_ tag: any FFCloudSDK.FLVTag) -> Foundation.Data?
+  @objc deinit
+}
+extension FFCloudSDK.FLVReader : Swift.IteratorProtocol {
+  public func next() -> (any FFCloudSDK.FLVTag)?
+  public typealias Element = any FFCloudSDK.FLVTag
+}
+public enum FLVAACPacketType : Swift.UInt8 {
+  case seq
+  case raw
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
+}
+public enum ChatMsgType : Swift.String, Swift.Codable {
+  case msg
+  case join
+  case leave
+  case admin
+  case stat
+  case whisper
+  case command
+  case manager
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+open class SwiftyGifManager {
+  public static var defaultManager: FFCloudSDK.SwiftyGifManager
+  open var haveCache: Swift.Bool
+  open var remoteCache: [Foundation.URL : Foundation.Data]
+  public init(memoryLimit: Swift.Int)
+  @objc deinit
+  public func startTimerIfNeeded()
+  public func stopTimer()
+  open func addImage(_ image: UIKit.UIImage)
+  open func deleteImage(_ image: UIKit.UIImage)
+  open func clear()
+}
+public protocol HLSPlayerDelegate : AnyObject {
+  func onPrepared(player: FFCloudSDK.HLSPlayer)
+  func onPaused(player: FFCloudSDK.HLSPlayer)
+  func onStarted(player: FFCloudSDK.HLSPlayer)
+  func onFailedToPlay(player: FFCloudSDK.HLSPlayer)
+  func onStopped(player: FFCloudSDK.HLSPlayer)
+  func onCompleted(player: FFCloudSDK.HLSPlayer)
+  func onProgressUpdated(player: FFCloudSDK.HLSPlayer, seconds: Swift.Float64)
+  func onError(player: FFCloudSDK.HLSPlayer, error: any Swift.Error)
+  func onVideoResolutionSize(player: FFCloudSDK.HLSPlayer, size: CoreFoundation.CGSize)
+}
+@objc open class HLSPlayer : ObjectiveC.NSObject {
+  open var isRepeat: Swift.Bool
+  open var isPictureInPictureSupported: Swift.Bool {
+    get
+  }
+  open var isPictureInPictureActive: Swift.Bool {
+    get
+  }
+  open var videoGravity: AVFoundation.AVLayerVideoGravity {
+    get
+    set
+  }
+  open var isMuted: Swift.Bool {
+    get
+    set
+  }
+  open var duration: Swift.Float64 {
+    get
+  }
+  open var forwardPlaybackEndtime: CoreMedia.CMTime? {
+    get
+    set
+  }
+  public init(url: Foundation.URL, view: UIKit.UIView, delegate: (any FFCloudSDK.HLSPlayerDelegate)?)
+  @objc deinit
+  open func start()
+  open func pause()
+  open func resume()
+  open func setFrame(frame: CoreFoundation.CGRect)
+  open func removeLayer()
+  open func updatePlayerItem(url: Foundation.URL)
+  open func seekTo(seconds: Swift.Float64, exactly: Swift.Bool = false, completion: ((Swift.Float64) -> Swift.Void)?)
+  open func stop()
+  open func reset()
+  open func startPIP()
+  open func stopPIP()
+}
+extension FFCloudSDK.HLSPlayer {
+  @objc override dynamic open func observeValue(forKeyPath keyPath: Swift.String?, of object: Any?, change: [Foundation.NSKeyValueChangeKey : Any]?, context: Swift.UnsafeMutableRawPointer?)
+}
+extension FFCloudSDK.HLSPlayer : AVKit.AVPictureInPictureControllerDelegate {
+}
+open class Responder {
+  public typealias Handler = (_ data: [Any?]) -> Swift.Void
+  public init(result: @escaping FFCloudSDK.Responder.Handler, status: FFCloudSDK.Responder.Handler? = nil)
+  @objc deinit
+}
+open class RTMPConnection : FFCloudSDK.EventDispatcher {
+  public static let defaultWindowSizeS: Swift.Int64
+  public static let supportedProtocols: Swift.Set<Swift.String>
+  public static let defaultPort: Swift.Int
+  public static let defaultSecurePort: Swift.Int
+  public static let defaultFlashVer: Swift.String
+  public static let defaultChunkSizeS: Swift.Int
+  public static let defaultCapabilities: Swift.Int
+  public static let defaultObjectEncoding: FFCloudSDK.RTMPObjectEncoding
+  public enum Code : Swift.String {
+    case callBadVersion
+    case callFailed
+    case callProhibited
+    case connectAppshutdown
+    case connectClosed
+    case connectFailed
+    case connectIdleTimeOut
+    case connectInvalidApp
+    case connectNetworkChange
+    case connectRejected
+    case connectSuccess
+    public var level: Swift.String {
+      get
+    }
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  open var swfUrl: Swift.String?
+  open var pageUrl: Swift.String?
+  open var timeout: Swift.Int {
+    get
+    set
+  }
+  open var qualityOfService: Dispatch.DispatchQoS {
+    get
+    set
+  }
+  open var flashVer: Swift.String
+  open var chunkSize: Swift.Int
+  open var uri: Foundation.URL? {
+    get
+  }
+  open var connected: Swift.Bool {
+    get
+  }
+  open var requireNetworkFramework: Swift.Bool
+  open var parameters: Any?
+  open var objectEncoding: FFCloudSDK.RTMPObjectEncoding
+  open var totalBytesIn: Swift.Int64 {
+    get
+  }
+  open var totalBytesOut: Swift.Int64 {
+    get
+  }
+  open var totalStreamsCount: Swift.Int {
+    get
+  }
+  @objc dynamic open var previousQueueBytesOut: [Swift.Int64] {
+    get
+  }
+  @objc dynamic open var currentBytesInPerSecond: Swift.Int32 {
+    get
+  }
+  @objc dynamic open var currentBytesOutPerSecond: Swift.Int32 {
+    get
+  }
+  override public init()
+  @objc deinit
+  open func call(_ commandName: Swift.String, responder: FFCloudSDK.Responder?, arguments: Any?...)
+  open func connect(_ command: Swift.String, arguments: Any?...)
+  open func close()
+}
+public enum RTMPObjectEncoding : Swift.UInt8 {
+  case amf0
+  case amf3
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers public class FFStreamerConfig : ObjectiveC.NSObject {
+  public var preset: FFCloudSDK.Preset
+  public var videoProfile: Swift.String
+  public var videoBitrate: Swift.Int
+  public var videoBitrateChangeRatio: Swift.Double
+  public var keyFrameInterval: Swift.Int
+  public var fps: Swift.Int
+  public var sampleRate: Swift.Int
+  public var audioBitrate: Swift.Int
+  public var cameraPos: AVFoundation.AVCaptureDevice.Position
+  public var visibility: Swift.String
+  public var videoGravity: AVFoundation.AVLayerVideoGravity
+  public var entropyMode: Swift.String
+  public var echoCancellation: Swift.Bool
+  public var adaptiveBitrate: Swift.Bool
+  public var adaitpveBitrateMaxRatio: Swift.Int
+  public var audioOnly: Swift.Bool
+  @objc override dynamic public init()
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers open class RTMPSharedObject : FFCloudSDK.EventDispatcher {
+  public static func getRemote(withName: Swift.String, remotePath: Swift.String, persistence: Swift.Bool) -> FFCloudSDK.RTMPSharedObject
+  open var objectEncoding: FFCloudSDK.RTMPObjectEncoding {
+    get
+  }
+  open var data: [Swift.String : Any?] {
+    get
+  }
+  open func setProperty(_ name: Swift.String, _ value: Any?)
+  open func connect(_ rtmpConnection: FFCloudSDK.RTMPConnection)
+  open func clear()
+  open func close()
+  @objc deinit
+}
+extension FFCloudSDK.RTMPSharedObject : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+@objc @_hasMissingDesignatedInitializers final public class NetClient : FFCloudSDK.NetSocket {
+  override final public func listen()
+  @objc deinit
+}
+extension FFCloudSDK.StreamKeyState : Swift.Equatable {}
+extension FFCloudSDK.StreamKeyState : Swift.Hashable {}
+extension FFCloudSDK.Origin : Swift.Equatable {}
+extension FFCloudSDK.Origin : Swift.Hashable {}
+extension FFCloudSDK.TransitionType : Swift.Equatable {}
+extension FFCloudSDK.TransitionType : Swift.Hashable {}
+extension FFCloudSDK.StreamerState : Swift.Equatable {}
+extension FFCloudSDK.StreamerState : Swift.Hashable {}
+extension FFCloudSDK.BroadcastState : Swift.Equatable {}
+extension FFCloudSDK.BroadcastState : Swift.Hashable {}
+extension FFCloudSDK.PlayerState : Swift.Equatable {}
+extension FFCloudSDK.PlayerState : Swift.Hashable {}
+extension FFCloudSDK.AlarmState : Swift.Equatable {}
+extension FFCloudSDK.AlarmState : Swift.Hashable {}
+extension FFCloudSDK.RtmpOutputMode : Swift.Equatable {}
+extension FFCloudSDK.RtmpOutputMode : Swift.Hashable {}
+extension FFCloudSDK.FLVAVCPacketType : Swift.Equatable {}
+extension FFCloudSDK.FLVAVCPacketType : Swift.Hashable {}
+extension FFCloudSDK.FLVAVCPacketType : Swift.RawRepresentable {}
+extension FFCloudSDK.FLVFrameType : Swift.Equatable {}
+extension FFCloudSDK.FLVFrameType : Swift.Hashable {}
+extension FFCloudSDK.FLVFrameType : Swift.RawRepresentable {}
+extension FFCloudSDK.RTMPPlayerState : Swift.Equatable {}
+extension FFCloudSDK.RTMPPlayerState : Swift.Hashable {}
+extension FFCloudSDK.FLVTagType : Swift.Equatable {}
+extension FFCloudSDK.FLVTagType : Swift.Hashable {}
+extension FFCloudSDK.FLVTagType : Swift.RawRepresentable {}
+extension FFCloudSDK.Reachability.Connection : Swift.Equatable {}
+extension FFCloudSDK.Reachability.Connection : Swift.Hashable {}
+extension FFCloudSDK.FFMessageType : Swift.Equatable {}
+extension FFCloudSDK.FFMessageType : Swift.Hashable {}
+extension FFCloudSDK.FFMessageType : Swift.RawRepresentable {}
+extension FFCloudSDK.PLAudioMixer.PLAudioMixerRenderStatus : Swift.Equatable {}
+extension FFCloudSDK.PLAudioMixer.PLAudioMixerRenderStatus : Swift.Hashable {}
+extension FFCloudSDK.H264Encoder.Option : Swift.RawRepresentable {}
+extension FFCloudSDK.DefaultAVRecorderDelegate.FileType : Swift.Equatable {}
+extension FFCloudSDK.DefaultAVRecorderDelegate.FileType : Swift.Hashable {}
+extension FFCloudSDK.FLVVideoCodec : Swift.Equatable {}
+extension FFCloudSDK.FLVVideoCodec : Swift.Hashable {}
+extension FFCloudSDK.FLVVideoCodec : Swift.RawRepresentable {}
+extension FFCloudSDK.HKPictureInPicureControllerPosition : Swift.Equatable {}
+extension FFCloudSDK.HKPictureInPicureControllerPosition : Swift.Hashable {}
+extension FFCloudSDK.ScalingMode : Swift.Equatable {}
+extension FFCloudSDK.ScalingMode : Swift.Hashable {}
+extension FFCloudSDK.ScalingMode : Swift.RawRepresentable {}
+extension FFCloudSDK.AVMixer.Option : Swift.RawRepresentable {}
+extension FFCloudSDK.ByteArray.Error : Swift.Equatable {}
+extension FFCloudSDK.ByteArray.Error : Swift.Hashable {}
+extension FFCloudSDK.FLVAudioCodec : Swift.Equatable {}
+extension FFCloudSDK.FLVAudioCodec : Swift.Hashable {}
+extension FFCloudSDK.FLVAudioCodec : Swift.RawRepresentable {}
+extension FFCloudSDK.FLVSoundSize : Swift.Equatable {}
+extension FFCloudSDK.FLVSoundSize : Swift.Hashable {}
+extension FFCloudSDK.FLVSoundSize : Swift.RawRepresentable {}
+extension FFCloudSDK.FLVSoundType : Swift.Equatable {}
+extension FFCloudSDK.FLVSoundType : Swift.Hashable {}
+extension FFCloudSDK.FLVSoundType : Swift.RawRepresentable {}
+extension FFCloudSDK.AudioCodec.Destination : Swift.Equatable {}
+extension FFCloudSDK.AudioCodec.Destination : Swift.Hashable {}
+extension FFCloudSDK.Preset : Swift.Equatable {}
+extension FFCloudSDK.Preset : Swift.Hashable {}
+extension FFCloudSDK.Preset : Swift.RawRepresentable {}
+extension FFCloudSDK.FLVSoundRate : Swift.Equatable {}
+extension FFCloudSDK.FLVSoundRate : Swift.Hashable {}
+extension FFCloudSDK.FLVSoundRate : Swift.RawRepresentable {}
+extension FFCloudSDK.RTMPStream.Code : Swift.Equatable {}
+extension FFCloudSDK.RTMPStream.Code : Swift.Hashable {}
+extension FFCloudSDK.RTMPStream.Code : Swift.RawRepresentable {}
+extension FFCloudSDK.RTMPStream.PlayTransition : Swift.Equatable {}
+extension FFCloudSDK.RTMPStream.PlayTransition : Swift.Hashable {}
+extension FFCloudSDK.RTMPStream.PlayTransition : Swift.RawRepresentable {}
+extension FFCloudSDK.RTMPStream.HowToPublish : Swift.Equatable {}
+extension FFCloudSDK.RTMPStream.HowToPublish : Swift.Hashable {}
+extension FFCloudSDK.RTMPStream.HowToPublish : Swift.RawRepresentable {}
+extension FFCloudSDK.ServerConfig : Swift.Equatable {}
+extension FFCloudSDK.ServerConfig : Swift.Hashable {}
+extension FFCloudSDK.EventPhase : Swift.Equatable {}
+extension FFCloudSDK.EventPhase : Swift.Hashable {}
+extension FFCloudSDK.EventPhase : Swift.RawRepresentable {}
+extension FFCloudSDK.AudioCodec.Option : Swift.RawRepresentable {}
+extension FFCloudSDK.FLVAACPacketType : Swift.Equatable {}
+extension FFCloudSDK.FLVAACPacketType : Swift.Hashable {}
+extension FFCloudSDK.FLVAACPacketType : Swift.RawRepresentable {}
+extension FFCloudSDK.ChatMsgType : Swift.Equatable {}
+extension FFCloudSDK.ChatMsgType : Swift.Hashable {}
+extension FFCloudSDK.ChatMsgType : Swift.RawRepresentable {}
+extension FFCloudSDK.RTMPConnection.Code : Swift.Equatable {}
+extension FFCloudSDK.RTMPConnection.Code : Swift.Hashable {}
+extension FFCloudSDK.RTMPConnection.Code : Swift.RawRepresentable {}
+extension FFCloudSDK.RTMPObjectEncoding : Swift.Equatable {}
+extension FFCloudSDK.RTMPObjectEncoding : Swift.Hashable {}
+extension FFCloudSDK.RTMPObjectEncoding : Swift.RawRepresentable {}
