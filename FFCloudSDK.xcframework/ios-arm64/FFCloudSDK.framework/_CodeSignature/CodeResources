@@ -18,11 +18,11 @@
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		r4dSBqZmUXCqgGPjUorGhZX15oQ=
+		csD1x2fs2GNKUIrP5198Po+rquU=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		qNt6cu7ZRTnYrPa/YKUNyN7byJc=
+		tGzG2f8Zin/wFOU/u3zfH+Nq8mA=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -30,11 +30,11 @@
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		qNt6cu7ZRTnYrPa/YKUNyN7byJc=
+		tGzG2f8Zin/wFOU/u3zfH+Nq8mA=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		jqQ47QmLjoqSUVrUQTWu+muJQ8Q=
+		lxrAElDuwSqP7HCrR/ZLGkAPDxY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -61,14 +61,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			U4XysuAG9qpXnWFx+EeKEXQVsXiT5SMTmj3OFg/cUdg=
+			Ck/diMD+KxCxF1+cnZWluXLwOzMBdeCuf3blE4hntlY=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0Cog1Abb32Jp2TDcZZMLoY6vg/VM9v2IhaFhprVhRk8=
+			fm/qnruIw7dbMyIKEHTpmSGRBv2z/zKB+PriWKIsOHs=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -82,14 +82,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0Cog1Abb32Jp2TDcZZMLoY6vg/VM9v2IhaFhprVhRk8=
+			fm/qnruIw7dbMyIKEHTpmSGRBv2z/zKB+PriWKIsOHs=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0baTpoAnoDPRyIQpHmbC2IQYrk/rEv0+bhNofXnWcjM=
+			ntaaML0KxUXpriXDHZJxqYIY8+EVn91VR33NRIVD8yQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
