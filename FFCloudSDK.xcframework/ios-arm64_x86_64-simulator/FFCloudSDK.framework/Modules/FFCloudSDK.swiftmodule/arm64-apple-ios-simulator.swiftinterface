@@ -4,7 +4,6 @@
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 @_exported import FFCloudSDK
 import Foundation
-import LiveKitClient
 import Logboard
 import Swift
 import UIKit
@@ -58,45 +57,8 @@ extension FFCloudSDK.FFCApi {
   public func getVideoRoom(videoRoomId: Swift.UInt64, completion: FFCloudSDK.FFCApi.APIResult<FFCloudSDK.VideoRoomInfo>)
   public func issueWebRtcVideoRoomToken(videoRoomId: Swift.UInt64, password: Swift.String? = nil, customData: [Swift.String : Swift.String]? = nil, completion: FFCloudSDK.FFCApi.APIResult<FFCloudSDK.WebRtcVideoTokenInfo>)
 }
-public protocol FFCVideoRoomDelegate : AnyObject {
-  func videoRoomDidConnect(_ videoRoom: FFCloudSDK.FFCVideoRoom)
-  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, didFailToConnectWithError error: LiveKitClient.LiveKitError?)
-  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, didDisconnectWithError error: LiveKitClient.LiveKitError?)
-  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.LocalParticipant, didPublishTrack publication: LiveKitClient.LocalTrackPublication)
-  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.RemoteParticipant, didSubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
-  func videoRoom(_ videoRoom: FFCloudSDK.FFCVideoRoom, participant _: LiveKitClient.RemoteParticipant, didUnsubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
-}
-@_hasMissingDesignatedInitializers public class FFCVideoRoom {
-  weak public var delegate: (any FFCloudSDK.FFCVideoRoomDelegate)?
-  public var localParticipant: LiveKitClient.LocalParticipant {
-    get
-  }
-  public var remoteParticipants: [LiveKitClient.Participant.Identity : LiveKitClient.RemoteParticipant] {
-    get
-  }
-  public var sid: LiveKitClient.Room.Sid? {
-    get
-  }
-  public func getParticipantByIdentity(identity: LiveKitClient.Participant.Identity) -> LiveKitClient.Participant?
-  public func disconnect()
-  public func publishLocalVideo(enableMicrophone: Swift.Bool = true, enableCamera: Swift.Bool = true)
-  public func attachLocalVideo(track: any LiveKitClient.VideoTrack, localVideoView: UIKit.UIView)
-  public func attachRemoteVideo(track: any LiveKitClient.VideoTrack, remoteVideoView: UIKit.UIView)
-  public func enableLocalCamera(enabled: Swift.Bool)
-  public func enableLocalMicrophone(enabled: Swift.Bool)
-  @objc deinit
-}
-extension FFCloudSDK.FFCVideoRoom : LiveKitClient.RoomDelegate {
-  @objc dynamic public func roomDidConnect(_ room: LiveKitClient.Room)
-  @objc dynamic public func room(_ room: LiveKitClient.Room, didFailToConnectWithError error: LiveKitClient.LiveKitError?)
-  @objc dynamic public func room(_ room: LiveKitClient.Room, didDisconnectWithError error: LiveKitClient.LiveKitError?)
-  @objc dynamic public func room(_: LiveKitClient.Room, participant: LiveKitClient.LocalParticipant, didPublishTrack publication: LiveKitClient.LocalTrackPublication)
-  @objc dynamic public func room(_: LiveKitClient.Room, participant: LiveKitClient.RemoteParticipant, didSubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
-  @objc dynamic public func room(_ room: LiveKitClient.Room, participant: LiveKitClient.RemoteParticipant, didUnsubscribeTrack publication: LiveKitClient.RemoteTrackPublication)
-}
 @objc @_inheritsConvenienceInitializers public class FFCloud : ObjectiveC.NSObject {
   public static func api(url: Swift.String, accessToken: Swift.String) -> FFCloudSDK.FFCApi
-  public static func connectWebRtcVideoRoom(webRtcServerUrl: Swift.String, webRtcToken: Swift.String, cameraCaptureOptions: FFCloudSDK.FFCCameraCaptureOptions = FFCCameraCaptureOptions(), videoPublishOptions: FFCloudSDK.FFCVideoPublishOptions = FFCVideoPublishOptions(), delegate: (any FFCloudSDK.FFCVideoRoomDelegate)? = nil) -> FFCloudSDK.FFCVideoRoom
   @objc override dynamic public init()
   @objc deinit
 }
