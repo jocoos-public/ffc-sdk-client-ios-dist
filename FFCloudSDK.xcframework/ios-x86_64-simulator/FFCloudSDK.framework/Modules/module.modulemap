@@ -1,4 +1,0 @@
-framework module FFCloudSDK {
-  header "FFCloudSDK-Swift.h"
-  requires objc
-}

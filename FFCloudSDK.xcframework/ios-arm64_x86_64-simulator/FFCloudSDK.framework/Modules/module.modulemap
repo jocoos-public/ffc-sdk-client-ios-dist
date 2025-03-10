@@ -1,0 +1,11 @@
+framework module FFCloudSDK {
+  umbrella header "FFCloudSDK.h"
+  export *
+
+  module * { export * }
+}
+
+module FFCloudSDK.Swift {
+  header "FFCloudSDK-Swift.h"
+  requires objc
+}
