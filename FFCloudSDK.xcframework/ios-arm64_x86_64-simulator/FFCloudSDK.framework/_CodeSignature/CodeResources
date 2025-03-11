@@ -14,15 +14,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		CUkTDIvrM0U3flnQdl+DqIum8wM=
+		wqB2bhbn7i+ZsccDKGaP9uuTmNU=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		gCrEu+B251oJXJxoSiBkHf042Tg=
+		+fdrH9XQl8rJI1vbwlq7kc/QxNQ=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		pzNbt8Q8cAzmFLiXxC2kOunljdQ=
+		oADlPGFRFjmh9kt3NvvpADDnyNI=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -30,19 +30,19 @@
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		pzNbt8Q8cAzmFLiXxC2kOunljdQ=
+		oADlPGFRFjmh9kt3NvvpADDnyNI=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		9pTuzTZi/7anJvMALNN2hG33TkE=
+		0qUQ+dkTwlUM2WKEoPwbvFvDvl8=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		gCrEu+B251oJXJxoSiBkHf042Tg=
+		+fdrH9XQl8rJI1vbwlq7kc/QxNQ=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		aBCehA+Kd3L/lFlc/mQvrInUjGI=
+		eXkeDW4WhLVaigTOCxAB/aGb/tk=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -50,11 +50,11 @@
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		aBCehA+Kd3L/lFlc/mQvrInUjGI=
+		eXkeDW4WhLVaigTOCxAB/aGb/tk=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		fclG6iY1SBRp6iozsq4iS4RfXBk=
+		5IFj4ezYRJ8Fi+Lbg86fl2e1iQU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -81,14 +81,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AZKOZgZJW8n34FZkjwSh0LKO98YR1TE84PMPCJsyNbk=
+			3zbOVkVEoi29xTlJstt1A2/o0rkXC9RzDt99qw9XBz4=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0pmCO+vpJP7KjOT2OfLsas2nL3bEt226Fu3Tva2KKRM=
+			xyIeveXeeVUbgBG5fkYW4jBZigAbZfWMF63OW13qL+c=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -102,28 +102,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0pmCO+vpJP7KjOT2OfLsas2nL3bEt226Fu3Tva2KKRM=
+			xyIeveXeeVUbgBG5fkYW4jBZigAbZfWMF63OW13qL+c=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZmfMiHxCLO0Q5PoWA8YaEI8oTPnveiqE0QLGCPuAb6M=
+			W6sO83cIKrWn8qGT3YY+IPGxDj1E8WuNyEAgWEiZ4xI=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			AZKOZgZJW8n34FZkjwSh0LKO98YR1TE84PMPCJsyNbk=
+			3zbOVkVEoi29xTlJstt1A2/o0rkXC9RzDt99qw9XBz4=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			J8MS3pmDusJXVWpx0SQQGQGO2htlq4vGuudfUxUe4G4=
+			JgyBKNsDsuUr6oEaQ8DXEycW/kqiW4Hcvqr8h/wrGKM=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -137,14 +137,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			J8MS3pmDusJXVWpx0SQQGQGO2htlq4vGuudfUxUe4G4=
+			JgyBKNsDsuUr6oEaQ8DXEycW/kqiW4Hcvqr8h/wrGKM=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			25Q5VPGKIiBl+7Kz3w2uiJSBeMNMnLAMODtnzHo2D40=
+			9kibCfz70R5xdiG1K0RbRSHxFBPS2CNiXGWmgq3ADUU=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

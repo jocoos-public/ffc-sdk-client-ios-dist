@@ -140,7 +140,7 @@ public struct MemberInfo : Swift.Decodable {
   public let appUserId: Swift.String
   public let appUserName: Swift.String?
   public let appUserProfileImgUrl: Swift.String?
-  public let customType: Swift.String
+  public let customType: Swift.String?
   public init(from decoder: any Swift.Decoder) throws
 }
 extension FFCloudSDK.FFCErrorType : Swift.Equatable {}
