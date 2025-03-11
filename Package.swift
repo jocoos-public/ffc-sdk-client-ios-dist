@@ -11,20 +11,20 @@ let package = Package(
     products: [
         .library(
             name: "FFCloudSDK",
-            targets: ["FFCloudSDK"]
+            targets: ["FFCloudSDKWrapper"]
         ),
     ],
     dependencies: [
     ],
     targets: [
         .binaryTarget(
-            name: "FFCloudSDKFramework",
+            name: "FFCloudSDK",
             path: "./FFCloudSDK.xcframework"
         ),
         .target(
-            name: "FFCloudSDK",
+            name: "FFCloudSDKWrapper",
             dependencies: [
-                "FFCloudSDKFramework",
+                "FFCloudSDK",
             ]
         )
     ]
