@@ -1397,13 +1397,6 @@
         ]
       },
       {
-        "kind": "Import",
-        "name": "Logboard",
-        "printedName": "Logboard",
-        "declKind": "Import",
-        "moduleName": "FFCloudSDK"
-      },
-      {
         "kind": "TypeDecl",
         "name": "FFCloud",
         "printedName": "FFCloud",
@@ -4538,275 +4531,254 @@
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 3181,
+      "offset": 3174,
       "length": 69,
       "value": "\"response decode fail : \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 3249,
-      "length": 2,
+      "offset": 3242,
+      "length": 18,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 3374,
+      "offset": 3383,
       "length": 5,
       "value": "\"400\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 3395,
+      "offset": 3404,
       "length": 64,
       "value": "\"json parse error: \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 3458,
+      "offset": 3467,
       "length": 5,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 3909,
+      "offset": 3911,
       "length": 69,
       "value": "\"response decode fail : \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 3977,
-      "length": 2,
+      "offset": 3979,
+      "length": 18,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 4102,
+      "offset": 4120,
       "length": 5,
       "value": "\"400\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 4123,
+      "offset": 4141,
       "length": 64,
       "value": "\"json parse error: \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 4186,
+      "offset": 4204,
       "length": 5,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "IntegerLiteral",
-      "offset": 4452,
+      "offset": 4470,
       "length": 3,
       "value": "401"
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 4574,
+      "offset": 4583,
       "length": 23,
       "value": "\"cannot decodeFromJson\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 4724,
+      "offset": 4743,
       "length": 23,
       "value": "\"cannot decodeFromJson\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 5076,
+      "offset": 5104,
       "length": 23,
       "value": "\"cannot decodeFromJson\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "IntegerLiteral",
-      "offset": 5374,
+      "offset": 5418,
       "length": 3,
       "value": "100"
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 5492,
+      "offset": 5536,
       "length": 14,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 5505,
+      "offset": 5549,
       "length": 46,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "IntegerLiteral",
-      "offset": 5814,
+      "offset": 5858,
       "length": 3,
       "value": "400"
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 5926,
+      "offset": 5963,
       "length": 23,
       "value": "\"cannot decodeFromJson\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 6070,
+      "offset": 6117,
       "length": 23,
       "value": "\"cannot decodeFromJson\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 6376,
+      "offset": 6432,
       "length": 23,
       "value": "\"cannot decodeFromJson\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "IntegerLiteral",
-      "offset": 6650,
+      "offset": 6722,
       "length": 3,
       "value": "100"
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 6760,
+      "offset": 6832,
       "length": 14,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 6773,
+      "offset": 6845,
       "length": 46,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 7060,
+      "offset": 7126,
       "length": 57,
       "value": "\"error body: \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 7113,
+      "offset": 7179,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 7116,
-      "length": 2,
+      "offset": 7182,
+      "length": 17,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 7261,
+      "offset": 7335,
       "length": 23,
       "value": "\"cannot decodeFromJson\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCApi.swift",
       "kind": "StringLiteral",
-      "offset": 7862,
+      "offset": 7952,
       "length": 18,
       "value": "\"VIDEO_CONFERENCE\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Dictionary+extension.swift",
       "kind": "StringLiteral",
-      "offset": 673,
+      "offset": 674,
       "length": 18,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Dictionary+extension.swift",
       "kind": "StringLiteral",
-      "offset": 680,
+      "offset": 681,
       "length": 1,
       "value": "\"=\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Dictionary+extension.swift",
       "kind": "StringLiteral",
-      "offset": 690,
+      "offset": 691,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Dictionary+extension.swift",
       "kind": "StringLiteral",
-      "offset": 764,
+      "offset": 765,
       "length": 3,
       "value": "\"&\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Dictionary+extension.swift",
       "kind": "StringLiteral",
-      "offset": 1895,
+      "offset": 1896,
       "length": 3,
       "value": "\".\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Dictionary+extension.swift",
       "kind": "IntegerLiteral",
-      "offset": 2298,
+      "offset": 2299,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Dictionary+extension.swift",
       "kind": "IntegerLiteral",
-      "offset": 2728,
+      "offset": 2729,
       "length": 1,
       "value": "1"
-    },
-    {
-      "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCloud.swift",
-      "kind": "StringLiteral",
-      "offset": 141,
-      "length": 18,
-      "value": "\"FlipFlopCloudSDK\""
-    },
-    {
-      "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Encodable+extension.swift",
-      "kind": "StringLiteral",
-      "offset": 522,
-      "length": 21,
-      "value": "\"jsonString: \""
-    },
-    {
-      "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Encodable+extension.swift",
-      "kind": "StringLiteral",
-      "offset": 542,
-      "length": 2,
-      "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/FFCError.swift",
@@ -5420,140 +5392,119 @@
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 2585,
+      "offset": 2579,
       "length": 29,
       "value": "\"fail to create url : \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 2613,
-      "length": 2,
+      "offset": 2607,
+      "length": 17,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "IntegerLiteral",
-      "offset": 2763,
+      "offset": 2772,
       "length": 2,
       "value": "10"
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 2882,
+      "offset": 2891,
       "length": 7,
       "value": "\"%@:%@\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 3083,
+      "offset": 3092,
       "length": 28,
       "value": "\"Basic \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 3110,
+      "offset": 3119,
       "length": 24,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 3133,
+      "offset": 3142,
       "length": 15,
       "value": "\"Authorization\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 3218,
+      "offset": 3227,
       "length": 23,
       "value": "\"Bearer \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 3240,
+      "offset": 3249,
       "length": 24,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 3263,
+      "offset": 3272,
       "length": 15,
       "value": "\"Authorization\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 3606,
-      "length": 36,
-      "value": "\"request \""
-    },
-    {
-      "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
-      "kind": "StringLiteral",
-      "offset": 3628,
-      "length": 1,
-      "value": "\" : \""
-    },
-    {
-      "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
-      "kind": "StringLiteral",
-      "offset": 3641,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
-      "kind": "StringLiteral",
-      "offset": 3707,
+      "offset": 3727,
       "length": 54,
       "value": "\"request body : \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 3757,
+      "offset": 3777,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 3760,
-      "length": 2,
+      "offset": 3780,
+      "length": 18,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "IntegerLiteral",
-      "offset": 3913,
+      "offset": 3949,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 4068,
+      "offset": 4097,
       "length": 18,
       "value": "\"no http response\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "IntegerLiteral",
-      "offset": 4116,
+      "offset": 4161,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/HTTPClient.swift",
       "kind": "StringLiteral",
-      "offset": 4154,
+      "offset": 4199,
       "length": 18,
       "value": "\"no http response\""
     },
@@ -5581,140 +5532,140 @@
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Data+extension.swift",
       "kind": "StringLiteral",
-      "offset": 1133,
+      "offset": 1135,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Data+extension.swift",
       "kind": "Array",
-      "offset": 1263,
+      "offset": 1265,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/extension\/Data+extension.swift",
       "kind": "Array",
-      "offset": 1547,
+      "offset": 1549,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 693,
+      "offset": 694,
       "length": 22,
       "value": "\"APIError - Not Found\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 769,
+      "offset": 770,
       "length": 45,
       "value": "\"APIError - Request Failed -> \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 813,
+      "offset": 814,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 849,
+      "offset": 850,
       "length": 14,
       "value": "\"Invalid Data\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 924,
+      "offset": 925,
       "length": 64,
       "value": "\"APIError - Response Unsuccessful status code -> \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 987,
+      "offset": 988,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 1031,
+      "offset": 1032,
       "length": 34,
       "value": "\"APIError - JSON decoding Failure\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 1127,
+      "offset": 1128,
       "length": 54,
       "value": "\"APIError - JSON Conversion Failure -> \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 1180,
+      "offset": 1181,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 1241,
+      "offset": 1242,
       "length": 62,
       "value": "\"APIError - decodingtask failure with error -> \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 1302,
+      "offset": 1303,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 1372,
+      "offset": 1373,
       "length": 54,
       "value": "\"APIError - post parameters failure -> \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 1425,
+      "offset": 1426,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 1477,
+      "offset": 1478,
       "length": 48,
       "value": "\"APIError - Unauthoized error -> \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 1524,
+      "offset": 1525,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 1585,
+      "offset": 1586,
       "length": 38,
       "value": "\"APIError - unknown -> \""
     },
     {
       "filePath": "\/Users\/soonhyung\/jocoos-develop\/ffc-sdk-client-ios\/FFCloudSDK\/api\/APIError.swift",
       "kind": "StringLiteral",
-      "offset": 1622,
+      "offset": 1623,
       "length": 1,
       "value": "\"\""
     }

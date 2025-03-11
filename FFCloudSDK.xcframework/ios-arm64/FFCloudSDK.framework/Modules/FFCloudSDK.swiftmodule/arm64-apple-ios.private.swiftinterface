@@ -4,7 +4,6 @@
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 @_exported import FFCloudSDK
 import Foundation
-import Logboard
 import Swift
 import UIKit
 import _Concurrency
