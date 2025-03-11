@@ -18,17 +18,13 @@ let package = Package(
         .package(url: "https://github.com/shogo4405/Logboard.git", from: "2.4.1"),
     ],
     targets: [
-        .target(
-            name: "FFCloudSDK",
-            dependencies: ["FFCloudSDKWrapper"]
-        ),
         .binaryTarget(
             name: "FFCloudSDKFramework",
             url: "https://github.com/jocoos-public/ffc-sdk-client-ios-dist/releases/download/1.0.21/FFCloudSDK.xcframework.zip",
             checksum: "27e637f6aad452153b7d4cc74b3e3aa7bc0d1ff6f7a05a20db63be1c9ecddbbc"
         ),
         .target(
-            name: "FFCloudSDKWrapper",
+            name: "FFCloudSDK",
             dependencies: [
                 "FFCloudSDKFramework",
                 .product(name: "Logboard", package: "Logboard"),
