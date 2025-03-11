@@ -16,7 +16,6 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/shogo4405/Logboard.git", from: "2.4.1"),
-        .package(url: "https://github.com/livekit/client-sdk-swift.git", from: "2.2.1"), 
     ],
     targets: [
         .binaryTarget(
