@@ -15,6 +15,7 @@ let package = Package(
         ),
     ],
     dependencies: [
+        .package(url: "https://github.com/livekit/client-sdk-swift.git", from: "2.3.0"),
     ],
     targets: [
         .binaryTarget(
@@ -25,6 +26,7 @@ let package = Package(
             name: "FFCloudSDKWrapper",
             dependencies: [
                 "FFCloudSDK",
+                .product(name: "LiveKit", package: "client-sdk-swift"),
             ]
         )
     ]
