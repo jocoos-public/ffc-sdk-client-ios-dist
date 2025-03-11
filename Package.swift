@@ -26,6 +26,7 @@ let package = Package(
         .target(
             name: "FFCloudSDKWrapper",
             dependencies: [
+                "FFCloudSDK",
                 .product(name: "Logboard", package: "Logboard"),
             ]
         )
