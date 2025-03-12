@@ -14,11 +14,11 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		A9WrMe1vJ8DMa9OgXMy1ddUWmtU=
+		cYn+JE/kFehEY0P2xApBN6CqaUo=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		XZcZswYgOymkEEz6UohF77osepw=
+		uSHMmRtofBgw2qPQwR19UdOvLPg=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		5dzT+H4SUsXfTLj/CyMI8mQJCw4=
+		m5dieA975W7xVBhTJIOdl6yeiQI=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		XZcZswYgOymkEEz6UohF77osepw=
+		uSHMmRtofBgw2qPQwR19UdOvLPg=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		A++TU2xmIKWKCxYTOxe+J0+9mzs=
+		bZBfE/edZVDwsPshmER14llYU1Q=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -81,7 +81,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			XviojMAZfN1kfq/BbOIjmMZUvgTCSDWIm1shgxZLnMo=
+			UmdXSUUdHCxVccofXlWZnmiTa4jmN0yydgHl+YU0TIo=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -109,14 +109,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rwy8SD6QNsddS/OE6QU5qTfZIvYxKeOOPeNOUruvAHA=
+			X8oh62OPUhgQNMzAVXkjVM5OsbMYf1Kd1BFtZQz59Bo=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XviojMAZfN1kfq/BbOIjmMZUvgTCSDWIm1shgxZLnMo=
+			UmdXSUUdHCxVccofXlWZnmiTa4jmN0yydgHl+YU0TIo=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -144,7 +144,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CT+mG6vz402IG/ogE6J+kXtGoNq1oVrj+AHrgbzqb/k=
+			9UV/JUNG7Pjr8aYcuYLPKGYvR63NUurrknlvB8u5V+4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
