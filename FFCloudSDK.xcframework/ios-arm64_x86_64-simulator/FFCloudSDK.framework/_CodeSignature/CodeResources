@@ -10,19 +10,19 @@
 		</data>
 		<key>Headers/FFCloudSDK.h</key>
 		<data>
-		H8UBjslecwSUWHZIi3Fv0asjptc=
+		OKKGaXqO5PrKvAehVbpyEGaNzdI=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		a7OE9fOCge4iHrbsE+3VycDLTWY=
+		A9WrMe1vJ8DMa9OgXMy1ddUWmtU=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		PR7xqPhRmDBlCgQigAFUjU/GAME=
+		XZcZswYgOymkEEz6UohF77osepw=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		Vym7q0W+LkgbDaXXIoNEIQahs0U=
+		GiRN6nPilsdsGvSTR61TvBrbROA=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -30,19 +30,19 @@
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		Vym7q0W+LkgbDaXXIoNEIQahs0U=
+		GiRN6nPilsdsGvSTR61TvBrbROA=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		6gxqjR/SlaXteGjnRh+b38lVUq4=
+		5dzT+H4SUsXfTLj/CyMI8mQJCw4=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		PR7xqPhRmDBlCgQigAFUjU/GAME=
+		XZcZswYgOymkEEz6UohF77osepw=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		9OvuZwu3MvuQE3WU2+/N+Ga1a2I=
+		tIfFVm/ROJilnZ5yAQyDIiHymM8=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -50,11 +50,11 @@
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		9OvuZwu3MvuQE3WU2+/N+Ga1a2I=
+		tIfFVm/ROJilnZ5yAQyDIiHymM8=
 		</data>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		CDU+bgmWkCTh/b66qEUoyqKaB8g=
+		A++TU2xmIKWKCxYTOxe+J0+9mzs=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -74,21 +74,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sb++Rpd0Hqsfy5P0h4xQVdmzpj/6+8WVDwidjIwAFsU=
+			WBwwUd3Y6qVzg9Cpo+moKwGAk7Nk7fbHJzqw23WXLws=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			raP2exgM+93YcUR4Y/qi3yH9m2/jnJMdxXsk9mPcPwY=
+			XviojMAZfN1kfq/BbOIjmMZUvgTCSDWIm1shgxZLnMo=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cZDhePTFQmAdDTWWkYoCCf/eFMMhNKvGk/RrVnenohE=
+			vn3JTMRySdF9vTCo6lfosFdTG2FxWfe7k1PdNoIYOC0=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -102,28 +102,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			cZDhePTFQmAdDTWWkYoCCf/eFMMhNKvGk/RrVnenohE=
+			vn3JTMRySdF9vTCo6lfosFdTG2FxWfe7k1PdNoIYOC0=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IQ9s3t6g7jFtSs4WRVXHTBRCVv7EV7S4LmH9DbIDXrA=
+			rwy8SD6QNsddS/OE6QU5qTfZIvYxKeOOPeNOUruvAHA=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			raP2exgM+93YcUR4Y/qi3yH9m2/jnJMdxXsk9mPcPwY=
+			XviojMAZfN1kfq/BbOIjmMZUvgTCSDWIm1shgxZLnMo=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CmrGbwhNHiTE6NjVkpvKGtM5hOeGW2SZR8ESWTktHVs=
+			fwwACaCDFvXd8Tjc07uyJ8dH4an1lJZHEHRdCucYLAY=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -137,14 +137,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CmrGbwhNHiTE6NjVkpvKGtM5hOeGW2SZR8ESWTktHVs=
+			fwwACaCDFvXd8Tjc07uyJ8dH4an1lJZHEHRdCucYLAY=
 			</data>
 		</dict>
 		<key>Modules/FFCloudSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LVaM3n+hJHBVZSYVX+yrF3a2R4bWYo3nS5fF9Q3vEs4=
+			CT+mG6vz402IG/ogE6J+kXtGoNq1oVrj+AHrgbzqb/k=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
